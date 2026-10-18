@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 23 23">
+  <title>PrtScr</title>
+  <!-- The viewBox centres the window, not the window and dot together, and is as tight as
+       the dot allows: the dot reaches the right edge. -->
+  <!-- The gap around the dot is cut out rather than stroked in a background colour, so it
+       shows whatever the icon sits on: the taskbar, a title bar, light or dark. -->
+  <mask id="gap" maskUnits="userSpaceOnUse" x="0" y="0" width="23" height="23">
+    <rect x="0" y="0" width="23" height="23" fill="#fff"/>
+    <circle cx="19" cy="18" r="5" fill="#000"/>
+  </mask>
+  <g mask="url(#gap)">
+    <rect x="2" y="4" width="19" height="15" rx="4" fill="#4F6BF5"/>
+    <rect x="2" y="4" width="19" height="5" rx="2.5" fill="#8EA3FF"/>
+  </g>
+  <circle cx="19" cy="18" r="4" fill="#FF4A5B"/>
+</svg>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrtScr: screenshots and screen recordings for Windows and macOS</title>
+<meta name="description" content="Press one key to capture, mark up, record and share. A fast screenshot and screen recording app for Windows and macOS, with a real editor built in. No account, no watermark, and your captures stay on your disk.">
+<meta name="theme-color" content="#0a0b0f">
+<meta property="og:title" content="PrtScr">
+<meta property="og:description" content="Press one key. Capture, mark up, record and share, all on your own machine.">
+<meta property="og:image" content="https://bieleckiltd.github.io/PrtScr-releases/img/og.png">
+<meta property="og:url" content="https://bieleckiltd.github.io/PrtScr-releases/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/icon.png">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><img src="img/icon.svg" width="26" height="26" alt="">PrtScr</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases">Releases</a>
+    </nav>
+    <a class="btn primary small dl" data-dl href="#install"><svg class="ico s"><use href="#i-download"/></svg><span data-dl-label>Download</span></a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="sky" aria-hidden="true"><i class="sun"></i><i class="arc a1"></i><i class="arc a2"></i></div>
+    <div class="wrap hero-in">
+      <p class="eyebrow"><span class="dot"></span>Free for Windows and macOS<span class="ver" data-version hidden></span></p>
+      <h1>Press one key.<br><span class="grad">Capture, mark up, record and share.</span></h1>
+      <p class="lede">A fast screenshot and screen recording app with a real editor built in. No account, no watermark, and every capture stays on your own disk.</p>
+      <div class="ctas">
+        <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
+        <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
+      </div>
+      <p class="fine">Windows 10 (version 2004) or later · macOS 13 or later · <a href="#install">How to install</a></p>
+    </div>
+
+    <div class="wrap">
+      <figure class="scene-wrap" id="how" aria-label="An animation made from real PrtScr screenshots: a key is pressed, a region of a dashboard is selected, the capture is marked up in PrtScr's editor with a box, an arrow, a note and pixelated email addresses, then it is copied and pasted into a chat.">
+        <div class="scene" id="scene">
+          <div class="sc-wall"><i class="sun"></i><i class="arc"></i></div>
+
+          <div class="sc-win sc-browser">
+            <div class="sc-chrome"><i></i><i></i><i></i><span class="sc-url"><svg class="ico xs"><use href="#i-lock"/></svg>northwind.example/traffic</span></div>
+            <img class="sc-page" src="img/hero-page.jpg" width="640" height="400" alt="">
+          </div>
+
+          <div class="sc-win sc-chat">
+            <div class="sc-chat-h"><b># launch</b><span>4 people</span></div>
+            <div class="sc-msgs">
+              <div class="msg"><i style="background:linear-gradient(135deg,#ffb36b,#ff6a5b)"></i><div><b>Maya</b><p>Did Thursday's launch move sign-ups?</p></div></div>
+              <div class="msg me sc-img-msg"><i style="background:linear-gradient(135deg,#8ea3ff,#4f6bf5)"></i><div><b>You</b><img class="sc-shot" src="img/hero-shot.jpg" width="210" height="131" alt=""></div></div>
+              <div class="msg sc-reply"><i style="background:linear-gradient(135deg,#ffb36b,#ff6a5b)"></i><div><b>Maya</b><p>Up 41%. Perfect, thanks!</p></div></div>
+            </div>
+            <div class="sc-input">Message #launch</div>
+          </div>
+
+          <div class="sc-sel"></div>
+          <img class="sc-bar" src="img/capture-bar.png" width="1652" height="140" alt="">
+          <div class="sc-flash"></div>
+
+          <div class="sc-win sc-editor">
+            <img class="e0" src="img/hero-ed-0.jpg" width="1440" height="802" alt="">
+            <img class="e1" src="img/hero-ed-1.jpg" width="1440" height="802" alt="">
+            <img class="e2" src="img/hero-ed-2.jpg" width="1440" height="802" alt="">
+          </div>
+
+          <div class="sc-keys" data-keys-step="capture"></div>
+          <div class="sc-keys copy" data-keys-step="copy"></div>
+          <div class="sc-cursor"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></div>
+        </div>
+      </figure>
+
+      <ol class="steps" id="steps" aria-label="Steps">
+        <li><button type="button" data-phase="0"><span class="n">1</span><span><b>Press the key</b><small data-keys-text="capture">PrtScr</small></span><i class="bar"><i></i></i></button></li>
+        <li><button type="button" data-phase="1"><span class="n">2</span><span><b>Drag a region</b><small>or pick a window or screen</small></span><i class="bar"><i></i></i></button></li>
+        <li><button type="button" data-phase="2"><span class="n">3</span><span><b>Mark it up</b><small>boxes, arrows, notes, blur</small></span><i class="bar"><i></i></i></button></li>
+        <li><button type="button" data-phase="3"><span class="n">4</span><span><b>Paste it anywhere</b><small>or drag a recording into a chat</small></span><i class="bar"><i></i></i></button></li>
+      </ol>
+      <div class="scene-ctl"><button type="button" class="btn ghost small" id="scenePlay" aria-pressed="false"><svg class="ico xs"><use href="#i-pause"/></svg><span>Pause</span></button></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features wrap" id="features">
+    <div class="sec-h">
+      <p class="eyebrow">What it does</p>
+      <h2>Everything between the key and the conversation</h2>
+      <p class="lede">Try them here: drag, slide and click.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card">
+        <div class="demo demo-arrow" id="demoArrow">
+          <div class="paper">
+            <div class="ph"><span class="lg"></span><b>Reports</b><span class="pill">Weekly</span></div>
+            <div class="rows"><i></i><i></i><i style="width:60%"></i></div>
+            <button type="button" class="tgt" id="arrowTarget" aria-label="Drag the Export button; the arrow follows it">Export CSV</button>
+            <span class="note" id="arrowNote">Export from here</span>
+            <svg class="ink" id="arrowInk" aria-hidden="true"><path id="arrowPath"/><path id="arrowHead"/></svg>
+          </div>
+          <span class="hint"><svg class="ico xs"><use href="#i-hand"/></svg>Drag the button</span>
+        </div>
+        <h3>Arrows that stick</h3>
+        <p>Point at something, then move it. The arrow stays attached and follows, so a layout change never means drawing it again.</p>
+      </article>
+
+      <article class="card">
+        <div class="demo demo-pix" id="demoPix">
+          <div class="paper">
+            <div class="ph"><b>New sign-ups</b><span class="pill">Today</span></div>
+            <div class="plist" data-layer="clear"></div>
+            <div class="plist cover" data-layer="hidden"></div>
+            <div class="split" id="pixSplit" role="slider" tabindex="0" aria-label="Before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45"><span><svg class="ico xs"><use href="#i-chevronLeft"/></svg><svg class="ico xs" style="transform:scaleX(-1)"><use href="#i-chevronLeft"/></svg></span></div>
+          </div>
+          <div class="seg" role="group" aria-label="Effect">
+            <button type="button" class="on" data-mode="pixelate">Pixelate</button>
+            <button type="button" data-mode="blur">Blur</button>
+          </div>
+        </div>
+        <h3>Hide anything private</h3>
+        <p>Pixelate or blur e-mail addresses, keys and faces before you share. Copies and exports carry only what you can see.</p>
+      </article>
+
+      <article class="card wide">
+        <div class="demo demo-tl" id="demoTl">
+          <div class="tl-preview">
+            <i class="sun"></i>
+            <div class="tl-shot" data-thumb="traffic"></div>
+            <div class="tl-shot b" data-thumb="chat"></div>
+            <span class="tl-click"></span>
+            <div class="tl-title"><b id="tlTitle">CAPTURE</b><span id="tlSub">Drag out a region</span></div>
+            <span class="tl-time mono" id="tlTime">0:00.0</span>
+          </div>
+          <div class="tl-side">
+            <div class="tl-ctl">
+              <button type="button" class="tl-play" id="tlPlay" aria-label="Pause"><svg class="ico s"><use href="#i-pause"/></svg></button>
+              <span class="mono faint" id="tlTotal">/ 0:12.0</span>
+            </div>
+            <div class="tl-lanes" id="tlLanes">
+              <div class="lane"><span class="lh"><svg class="ico xs"><use href="#i-type"/></svg>Titles</span><div class="lt" data-track="titles"></div></div>
+              <div class="lane"><span class="lh"><svg class="ico xs"><use href="#i-pointer"/></svg>Pointer</span><div class="lt" data-track="pointer"></div></div>
+              <div class="lane"><span class="lh"><svg class="ico xs"><use href="#i-film"/></svg>Video</span><div class="lt" data-track="video"></div></div>
+              <div class="lane"><span class="lh"><svg class="ico xs"><use href="#i-music"/></svg>Sound</span><div class="lt" data-track="sound"></div></div>
+              <span class="tl-head" id="tlHead"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-txt">
+          <h3>Record your screen, then edit it properly</h3>
+          <p>Record any region to MP4. Trim, crop and cut on a multi-track timeline, add fades, crossfades, music and animated titles, then drag the finished clip straight into a chat. Click the timeline to jump around.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="demo demo-crop" id="demoCrop">
+          <div class="crop-pic" data-thumb="desktop"></div>
+          <div class="crop-box" id="cropBox"><i></i><i></i><i></i><i></i><span class="crop-dim mono" id="cropDim"></span></div>
+          <label class="crop-ctl"><span>Crop</span><input type="range" id="cropRange" min="0" max="100" value="62" aria-label="How tight the crop is"><span class="faint">Original kept</span></label>
+        </div>
+        <h3>Nothing is ever lost</h3>
+        <p>Crops, trims and edits never touch the original. Widen a crop next week, undo anything, and get a deleted capture back for 30 days.</p>
+      </article>
+
+      <article class="card">
+        <div class="demo demo-mon" id="demoMon">
+          <div class="mon m1"><div class="scr" data-thumb="pricing"></div><span class="tag">4K · 150%</span><i class="stand"></i></div>
+          <div class="mon m2"><div class="scr" data-thumb="chat"></div><span class="tag">1080p · 100%</span><i class="stand"></i></div>
+          <div class="mon-sel"><span class="mono">2560 × 980</span></div>
+        </div>
+        <h3>Every screen, any scaling</h3>
+        <p>Capture a region that spans two monitors at different scaling, the screen under your pointer, or every screen at once. It comes out sharp, in one piece.</p>
+      </article>
+
+      <article class="card wide stack">
+        <div class="demo demo-sync" id="demoSync">
+          <svg class="sync-lines" id="syncLines" aria-hidden="true"></svg>
+          <div class="node home" id="syncHome"><svg class="ico l"><use href="#i-monitor"/></svg><b>This computer</b><span>Your library</span></div>
+          <div class="dests" id="syncDests" role="group" aria-label="Backup and sync places"></div>
+          <div class="node other" id="syncOther"><svg class="ico l"><use href="#i-monitor"/></svg><b>Your other computer</b><span>Same library</span></div>
+        </div>
+        <div class="card-txt">
+          <h3>Your library stays on your disk</h3>
+          <p id="syncText">Nothing leaves this computer unless you send it. Pick a place above to see what backing up and syncing looks like.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Screens -->
+  <section class="screens wrap" id="screens">
+    <div class="sec-h">
+      <p class="eyebrow">A look around</p>
+      <h2>Made to stay out of your way</h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Screens">
+      <button type="button" role="tab" aria-selected="true" data-shot="editor">Editor</button>
+      <button type="button" role="tab" aria-selected="false" data-shot="video">Video editor</button>
+      <button type="button" role="tab" aria-selected="false" data-shot="library">Library</button>
+    </div>
+    <figure class="shot">
+      <img id="shotImg" src="img/editor.png" width="2784" height="1650" alt="The PrtScr editor: a capture of a traffic dashboard marked up with a box, a curved arrow, a handwritten note, a highlight and pixelated e-mail addresses" loading="lazy">
+      <figcaption id="shotCap">Mark up a capture with boxes, arrows, text, highlights and pixelation, then copy it in one click.</figcaption>
+    </figure>
+    <p class="fine center">Real screenshots of PrtScr on a Mac. The pages, names and figures in the captures are made up.</p>
+  </section>
+
+  <!-- Shortcuts -->
+  <section class="keys wrap" aria-labelledby="keysH">
+    <div class="sec-h">
+      <p class="eyebrow">Shortcuts</p>
+      <h2 id="keysH">Your hands never leave the keyboard</h2>
+    </div>
+    <div class="ktable">
+      <div class="khead"><span></span><span><svg class="ico s"><use href="#i-windows"/></svg>Windows</span><span><svg class="ico s"><use href="#i-apple"/></svg>Mac</span></div>
+      <div class="krow"><span>Capture</span><span><kbd>PrtScr</kbd></span><span><kbd>⇧ Shift</kbd><kbd>⌘ Cmd</kbd><kbd>2</kbd></span></div>
+      <div class="krow"><span>Record</span><span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>PrtScr</kbd></span><span><kbd>⌃ Ctrl</kbd><kbd>⇧ Shift</kbd><kbd>R</kbd></span></div>
+      <div class="krow"><span>Region, window or screen</span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span></div>
+      <div class="krow"><span>Same region as last time</span><span><kbd>L</kbd></span><span><kbd>L</kbd></span></div>
+      <div class="krow"><span>Cancel</span><span><kbd>Esc</kbd></span><span><kbd>Esc</kbd></span></div>
+    </div>
+    <p class="fine center">Taken by another app? PrtScr picks the next free shortcut and tells you which, and Settings changes either.</p>
+  </section>
+
+  <!-- Install -->
+  <section class="install wrap" id="install">
+    <div class="sec-h">
+      <p class="eyebrow">Install</p>
+      <h2>Up and running in a minute</h2>
+      <p class="lede">One download for each system. PrtScr keeps itself up to date after that.</p>
+    </div>
+    <div class="os-cards">
+      <article class="os" data-os="windows">
+        <header><svg class="ico l"><use href="#i-windows"/></svg><h3>Windows</h3><span class="req">Windows 10 (2004) or 11, 64-bit</span></header>
+        <a class="btn primary" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico s"><use href="#i-download"/></svg>PrtScr-setup.exe</a>
+        <ol class="howto">
+          <li><b>Run PrtScr-setup.exe.</b> It installs for you alone, with no administrator prompt.</li>
+          <li><b>If SmartScreen warns you,</b> choose <em>More info</em>, then <em>Run anyway</em>. The installer is not signed yet.
+            <div class="mini smartscreen" aria-hidden="true">
+              <b>Windows protected your PC</b>
+              <p>Microsoft Defender SmartScreen prevented an unrecognised app from starting.</p>
+              <u>More info</u>
+              <div class="mini-btns"><span class="mb hi">Run anyway</span><span class="mb">Don't run</span></div>
+            </div>
+          </li>
+          <li><b>Keep screen recording ticked</b> if you want it. Setup downloads PrtScr's own checked copy of FFmpeg for it, and Microsoft's WebView2 only if Windows lacks it.</li>
+          <li><b>Press <kbd>PrtScr</kbd>.</b> PrtScr waits in the system tray.</li>
+        </ol>
+      </article>
+
+      <article class="os" data-os="mac">
+        <header><svg class="ico l"><use href="#i-apple"/></svg><h3>macOS</h3><span class="req">macOS 13 or later, Apple silicon or Intel</span></header>
+        <a class="btn primary" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico s"><use href="#i-download"/></svg>PrtScr-macos.dmg</a>
+        <ol class="howto">
+          <li><b>Open PrtScr-macos.dmg</b> and double-click <em>Install PrtScr</em>.</li>
+          <li><b>If macOS cannot verify it,</b> click <em>Done</em>, open <em>System Settings → Privacy &amp; Security</em>, click <em>Open Anyway</em> and confirm. PrtScr is not notarized yet.
+            <div class="mini gatekeeper" aria-hidden="true">
+              <b>Security</b>
+              <p>“Install PrtScr” was blocked to protect your Mac.</p>
+              <div class="mini-btns"><span class="mb hi">Open Anyway</span></div>
+            </div>
+          </li>
+          <li><b>Install PrtScr does the rest:</b> it downloads the version for your Mac, puts it in Applications and opens it.</li>
+          <li><b>Allow Screen Recording</b> when asked: turn PrtScr on in <em>Privacy &amp; Security → Screen Recording</em>, then quit and reopen it. Then press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>2</kbd>.</li>
+        </ol>
+      </article>
+    </div>
+    <p class="fine center">Prefer to drag the app to Applications? Every <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest">release</a> also has <code>PrtScr-macos-arm64.dmg</code> (Apple silicon) and <code>PrtScr-macos-x64.dmg</code> (Intel).</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq wrap" aria-labelledby="faqH">
+    <div class="sec-h"><p class="eyebrow">Questions</p><h2 id="faqH">Good to know</h2></div>
+    <div class="qs">
+      <details><summary>What does it cost?</summary><p>Nothing. There is no account, no subscription and no watermark.</p></details>
+      <details><summary>Does PrtScr upload my captures?</summary><p>No. Every capture is kept in a library on your disk. Copying, saving and dragging are the only ways anything leaves, unless you connect a backup or sync location yourself in <em>Settings → Library and files</em>.</p></details>
+      <details><summary>Where can it back up or sync to?</summary><p>A local folder, a network share, a mounted NFS folder, SFTP, WebDAV, FTP or FTPS, S3-compatible storage, OneDrive, Google Drive or Dropbox, as many as you like. Connect two computers to the same place and captures, edits and deletions travel both ways. Competing edits are kept as copies, never overwritten.</p></details>
+      <details><summary>How does it update?</summary><p>It downloads the next version in the background and switches to it when you choose <em>Restart to update</em>, when you are away, or the next time it starts. Settings can turn that off, and <em>Check for updates</em> is always there.</p></details>
+      <details><summary>Does it send anything about me?</summary><p>Only if you turn on <em>Send anonymous error reports</em>. A report says what failed and where in PrtScr, with names, folders and e-mail addresses taken out, and nothing you captured or copied. Settings lists each one exactly as it was sent.</p></details>
+      <details><summary>Something went wrong. What should I send?</summary><p><a href="https://github.com/BieleckiLtd/PrtScr-releases/issues">Open an issue</a> saying what you did and what happened. The log is at <code>%LOCALAPPDATA%\PrtScr\logs\app.log</code> on Windows and <code>~/Library/Application Support/PrtScr/logs/app.log</code> on a Mac.</p></details>
+    </div>
+  </section>
+
+  <section class="final wrap">
+    <img src="img/icon.svg" width="56" height="56" alt="">
+    <h2>Press one key.</h2>
+    <div class="ctas">
+      <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
+      <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand"><img src="img/icon.svg" width="20" height="20" alt="">PrtScr<span class="faint" data-version-foot></span></span>
+    <nav aria-label="Links">
+      <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases">Releases</a>
+      <a href="https://github.com/BieleckiLtd/PrtScr-releases/issues">Report a problem</a>
+      <a href="https://github.com/BieleckiLtd/PrtScr-releases">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="js/icons.js"></script>
+<script src="js/thumbs.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
