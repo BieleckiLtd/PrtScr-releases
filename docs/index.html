@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PrtScr: screenshots and screen recordings for Windows and macOS</title>
-<meta name="description" content="Press one key to capture, mark up, record and share. A fast screenshot and screen recording app for Windows and macOS, with a real editor built in. No account, no watermark, and your captures stay on your disk.">
+<title>PrtScr: screenshots and screen recordings for Windows, macOS and Linux</title>
+<meta name="description" content="Press one key to capture, mark up, record and share. Screenshots and screen recordings for Windows and macOS, and screenshots on Linux, with a real editor built in. No account, no watermark, and your captures stay on your disk.">
 <meta name="theme-color" content="#0a0b0f">
 <meta property="og:title" content="PrtScr">
 <meta property="og:description" content="Press one key. Capture, mark up, record and share, all on your own machine.">
@@ -37,14 +37,15 @@
   <section class="hero" id="top">
     <div class="sky" aria-hidden="true"><i class="sun"></i><i class="arc a1"></i><i class="arc a2"></i></div>
     <div class="wrap hero-in">
-      <p class="eyebrow"><span class="dot"></span>Free for Windows and macOS<span class="ver" data-version hidden></span></p>
+      <p class="eyebrow"><span class="dot"></span>Free for Windows, macOS and Linux<span class="ver" data-version hidden></span></p>
       <h1>Press one key.<br><span class="grad">Capture, mark up, record and share.</span></h1>
       <p class="lede">A fast screenshot and screen recording app with a real editor built in. No account, no watermark, and every capture stays on your own disk.</p>
       <div class="ctas">
         <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
         <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
+        <a class="btn ghost big" data-os-link="linux" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run"><svg class="ico"><use href="#i-linux"/></svg>Download for Linux</a>
       </div>
-      <p class="fine">Windows 10 (version 2004) or later · macOS 13 or later · <a href="#install">How to install</a></p>
+      <p class="fine">Windows 10 (version 2004) or later · macOS 13 or later · Linux x64, in preview · <a href="#install">How to install</a></p>
     </div>
 
     <div class="wrap">
@@ -160,7 +161,7 @@
         </div>
         <div class="card-txt">
           <h3>Record your screen, then edit it properly</h3>
-          <p>Record any region to MP4. Trim, crop and cut on a multi-track timeline, add fades, crossfades, music and animated titles, then drag the finished clip straight into a chat. Click the timeline to jump around.</p>
+          <p>Record any region to MP4. Trim, crop and cut on a multi-track timeline, add fades, crossfades, music and animated titles, then drag the finished clip straight into a chat. Click the timeline to jump around. Recording is on Windows and macOS for now.</p>
         </div>
       </article>
 
@@ -224,14 +225,14 @@
       <h2 id="keysH">Your hands never leave the keyboard</h2>
     </div>
     <div class="ktable">
-      <div class="khead"><span></span><span><svg class="ico s"><use href="#i-windows"/></svg>Windows</span><span><svg class="ico s"><use href="#i-apple"/></svg>Mac</span></div>
-      <div class="krow"><span>Capture</span><span><kbd>PrtScr</kbd></span><span><kbd>⇧ Shift</kbd><kbd>⌘ Cmd</kbd><kbd>2</kbd></span></div>
-      <div class="krow"><span>Record</span><span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>PrtScr</kbd></span><span><kbd>⌃ Ctrl</kbd><kbd>⇧ Shift</kbd><kbd>R</kbd></span></div>
-      <div class="krow"><span>Region, window or screen</span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span></div>
-      <div class="krow"><span>Same region as last time</span><span><kbd>L</kbd></span><span><kbd>L</kbd></span></div>
-      <div class="krow"><span>Cancel</span><span><kbd>Esc</kbd></span><span><kbd>Esc</kbd></span></div>
+      <div class="khead"><span></span><span><svg class="ico s"><use href="#i-windows"/></svg>Windows</span><span><svg class="ico s"><use href="#i-apple"/></svg>Mac</span><span><svg class="ico s"><use href="#i-linux"/></svg>Linux</span></div>
+      <div class="krow"><span>Capture</span><span><kbd>PrtScr</kbd></span><span><kbd>⇧ Shift</kbd><kbd>⌘ Cmd</kbd><kbd>2</kbd></span><span><kbd>PrtSc</kbd> <i class="or">or</i> <kbd>Super</kbd><kbd>Shift</kbd><kbd>S</kbd></span></div>
+      <div class="krow"><span>Record</span><span><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>PrtScr</kbd></span><span><kbd>⌃ Ctrl</kbd><kbd>⇧ Shift</kbd><kbd>R</kbd></span><span class="faint">Not on Linux yet</span></div>
+      <div class="krow"><span>Region, window or screen</span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span><span><kbd>R</kbd><kbd>W</kbd><kbd>S</kbd></span></div>
+      <div class="krow"><span>Same region as last time</span><span><kbd>L</kbd></span><span><kbd>L</kbd></span><span><kbd>L</kbd></span></div>
+      <div class="krow"><span>Cancel</span><span><kbd>Esc</kbd></span><span><kbd>Esc</kbd></span><span><kbd>Esc</kbd></span></div>
     </div>
-    <p class="fine center">Taken by another app? PrtScr picks the next free shortcut and tells you which, and Settings changes either.</p>
+    <p class="fine center">Taken by another app? PrtScr picks the next free shortcut and tells you which, and Settings changes either.<br>On Linux the installer sets the keys up on Omarchy and other Hyprland desktops; on GNOME or KDE, give <code>prtscr --capture-region</code> a shortcut.</p>
   </section>
 
   <!-- Install -->
@@ -239,7 +240,7 @@
     <div class="sec-h">
       <p class="eyebrow">Install</p>
       <h2>Up and running in a minute</h2>
-      <p class="lede">One download for each system. PrtScr keeps itself up to date after that.</p>
+      <p class="lede">One download for each system. PrtScr keeps itself up to date after that, on all three.</p>
     </div>
     <div class="os-cards">
       <article class="os" data-os="windows">
@@ -276,8 +277,25 @@
           <li><b>Allow Screen Recording</b> when asked: turn PrtScr on in <em>Privacy &amp; Security → Screen Recording</em>, then quit and reopen it. Then press <kbd>⇧</kbd><kbd>⌘</kbd><kbd>2</kbd>.</li>
         </ol>
       </article>
+      <article class="os" data-os="linux">
+        <header><svg class="ico l"><use href="#i-linux"/></svg><h3>Linux <span class="tag-preview">Preview</span></h3><span class="req">64-bit x86 · Omarchy, Hyprland, GNOME or KDE</span></header>
+        <a class="btn primary" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run"><svg class="ico s"><use href="#i-download"/></svg>PrtScr-linux-x64.run</a>
+        <ol class="howto">
+          <li><b>Run it in a terminal.</b> It installs for you alone in <code>~/.local/opt/PrtScr</code>, with no administrator rights.<code class="cmd">bash ~/Downloads/PrtScr-linux-x64.run</code></li>
+          <li><b>Say yes to what it asks.</b> It installs WebKitGTK and <code>wl-clipboard</code> (<code>xclip</code> on X11) with your package manager, and on Omarchy makes the screenshot keys PrtScr's.
+            <div class="mini term" aria-hidden="true"><span class="p">$</span> bash ~/Downloads/PrtScr-linux-x64.run
+PrtScr needs webkit2gtk-4.1 wl-clipboard. Install with pacman now? [Y/n] <b>y</b>
+Make Print Screen or Super+Shift+S capture with PrtScr in Hyprland, instead of what they do now? [Y/n] <b>y</b>
+
+PrtScr <span data-version-term>0.1.28</span> is installed in /home/you/.local/opt/PrtScr.
+Press Print Screen or Super+Shift+S to capture.</div>
+          </li>
+          <li><b>On GNOME or KDE,</b> add a keyboard shortcut that runs <code>prtscr --capture-region</code>.</li>
+          <li><b>Press <kbd>PrtSc</kbd>.</b> On Wayland, your desktop may ask once whether PrtScr may capture the screen. Screen recording isn't on Linux yet.</li>
+        </ol>
+      </article>
     </div>
-    <p class="fine center">Prefer to drag the app to Applications? Every <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest">release</a> also has <code>PrtScr-macos-arm64.dmg</code> (Apple silicon) and <code>PrtScr-macos-x64.dmg</code> (Intel).</p>
+    <p class="fine center">Prefer to drag the app to Applications? Every <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest">release</a> also has <code>PrtScr-macos-arm64.dmg</code> (Apple silicon) and <code>PrtScr-macos-x64.dmg</code> (Intel). On Linux, <code>bash PrtScr-linux-x64.run --uninstall</code> removes PrtScr and keeps your captures.</p>
   </section>
 
   <!-- FAQ -->
@@ -289,7 +307,8 @@
       <details><summary>Where can it back up or sync to?</summary><p>A local folder, a network share, a mounted NFS folder, SFTP, WebDAV, FTP or FTPS, S3-compatible storage, OneDrive, Google Drive or Dropbox, as many as you like. Connect two computers to the same place and captures, edits and deletions travel both ways. Competing edits are kept as copies, never overwritten.</p></details>
       <details><summary>How does it update?</summary><p>It downloads the next version in the background and switches to it when you choose <em>Restart to update</em>, when you are away, or the next time it starts. Settings can turn that off, and <em>Check for updates</em> is always there.</p></details>
       <details><summary>Does it send anything about me?</summary><p>Only if you turn on <em>Send anonymous error reports</em>. A report says what failed and where in PrtScr, with names, folders and e-mail addresses taken out, and nothing you captured or copied. Settings lists each one exactly as it was sent.</p></details>
-      <details><summary>Something went wrong. What should I send?</summary><p><a href="https://github.com/BieleckiLtd/PrtScr-releases/issues">Open an issue</a> saying what you did and what happened. The log is at <code>%LOCALAPPDATA%\PrtScr\logs\app.log</code> on Windows and <code>~/Library/Application Support/PrtScr/logs/app.log</code> on a Mac.</p></details>
+      <details><summary>Does it work on Linux?</summary><p>Yes, as a preview. Screenshots, the library and the editor work on Omarchy and other Hyprland setups, GNOME and KDE, on Wayland or X11, on 64-bit x86. Not there yet: screen recording, picking a window to capture outside Hyprland, and backup locations that need a password or a sign-in.</p></details>
+      <details><summary>Something went wrong. What should I send?</summary><p><a href="https://github.com/BieleckiLtd/PrtScr-releases/issues">Open an issue</a> saying what you did and what happened. The log is at <code>%LOCALAPPDATA%\PrtScr\logs\app.log</code> on Windows, <code>~/Library/Application Support/PrtScr/logs/app.log</code> on a Mac and <code>~/.local/share/PrtScr/logs/app.log</code> on Linux.</p></details>
     </div>
   </section>
 
@@ -299,6 +318,7 @@
     <div class="ctas">
       <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
       <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
+        <a class="btn ghost big" data-os-link="linux" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run"><svg class="ico"><use href="#i-linux"/></svg>Download for Linux</a>
     </div>
   </section>
 </main>

@@ -53,35 +53,43 @@
   const ua = navigator.userAgent;
   const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "";
   const touchMac = /Mac/i.test(platform) && navigator.maxTouchPoints > 1;
-  const os = /Win/i.test(platform) ? "windows" : /Mac/i.test(platform) && !touchMac && !/iPhone|iPad/.test(ua) ? "mac" : "other";
+  const os = /Win/i.test(platform)
+    ? "windows"
+    : /Mac/i.test(platform) && !touchMac && !/iPhone|iPad/.test(ua)
+      ? "mac"
+      : /Linux/i.test(platform) && !/Android|CrOS/i.test(ua)
+        ? "linux"
+        : "other";
   const DL = {
     windows: "https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe",
     mac: "https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg",
+    linux: "https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run",
   };
-  const KEYS = { windows: ["PrtScr"], mac: ["⇧", "⌘", "2"], other: ["PrtScr"] };
+  const NAMES = { windows: "Windows", mac: "Mac", linux: "Linux" };
+  const KEYS = { windows: ["PrtScr"], mac: ["⇧", "⌘", "2"], linux: ["PrtSc"], other: ["PrtScr"] };
 
   if (os !== "other") {
     const nav = $("[data-dl]");
     nav.href = DL[os];
-    $("[data-dl-label]", nav).textContent = os === "mac" ? "Download for Mac" : "Download for Windows";
+    $("[data-dl-label]", nav).textContent = `Download for ${NAMES[os]}`;
     $$(`.os[data-os="${os}"]`).forEach((el) => el.classList.add("mine"));
-  }
-  if (os === "mac") {
+    // Your system's download first and filled in, its install steps first.
     $$(".ctas").forEach((row) => {
-      const win = $('[data-os-link="windows"]', row);
-      const mac = $('[data-os-link="mac"]', row);
-      win.classList.replace("primary", "ghost");
-      mac.classList.replace("ghost", "primary");
-      row.prepend(mac);
+      $$("[data-os-link]", row).forEach((a) => {
+        const yours = a.dataset.osLink === os;
+        a.classList.toggle("primary", yours);
+        a.classList.toggle("ghost", !yours);
+      });
+      row.prepend($(`[data-os-link="${os}"]`, row));
     });
     const cards = $(".os-cards");
-    cards.prepend($('.os[data-os="mac"]', cards));
+    cards.prepend($(`.os[data-os="${os}"]`, cards));
   }
   const COPY = os === "mac" ? ["⌘", "C"] : ["Ctrl", "C"];
   const kbds = (keys) => keys.map((k) => `<kbd>${k}</kbd>`).join("");
   $$('[data-keys-step="capture"]').forEach((el) => (el.innerHTML = kbds(KEYS[os])));
   $$('[data-keys-step="copy"]').forEach((el) => (el.innerHTML = kbds(COPY)));
-  $$('[data-keys-text="capture"]').forEach((el) => (el.textContent = os === "mac" ? "⇧ ⌘ 2 on a Mac" : "PrtScr on Windows, ⇧ ⌘ 2 on a Mac"));
+  $$('[data-keys-text="capture"]').forEach((el) => (el.textContent = { mac: "⇧ ⌘ 2 on a Mac", linux: "PrtSc on Linux" }[os] ?? "PrtScr on Windows, ⇧ ⌘ 2 on a Mac"));
 
   // The newest release, for the version line.
   fetch("https://api.github.com/repos/BieleckiLtd/PrtScr-releases/releases/latest", { headers: { Accept: "application/vnd.github+json" } })
@@ -94,6 +102,7 @@
       hero.textContent = `Version ${v}${date ? `, ${date}` : ""}`;
       hero.hidden = false;
       $("[data-version-foot]").textContent = ` ${v}`;
+      $$("[data-version-term]").forEach((el) => (el.textContent = v));
     })
     .catch(() => {});
 

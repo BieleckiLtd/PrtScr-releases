@@ -6,12 +6,14 @@
 
 **Press one key. Capture, mark up, record and share, all on your own machine.**
 
-Screenshots and screen recordings for Windows and macOS, with a real editor built in.<br>
-No account. No watermark. Your captures stay on your disk.
+Screenshots and screen recordings for Windows and macOS, and screenshots on Linux.<br>
+A real editor built in. No account. No watermark. Your captures stay on your disk.
 
 [**Download for Windows**](https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe)
 &nbsp;·&nbsp;
 [**Download for Mac**](https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg)
+&nbsp;·&nbsp;
+[**Download for Linux**](https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run)
 &nbsp;·&nbsp;
 [Website](https://bieleckiltd.github.io/PrtScr-releases/)
 &nbsp;·&nbsp;
@@ -88,9 +90,42 @@ Needs macOS 13 or later. Would you rather drag the app to Applications yourself?
 also has the app's own disk images: `PrtScr-macos-arm64.dmg` for Apple silicon and
 `PrtScr-macos-x64.dmg` for Intel.
 
+## Install on Linux (preview)
+
+Screenshots, the library and the editor work on Linux; screen recording is not there yet. PrtScr
+is made with [Omarchy](https://omarchy.org) in mind and also runs on other Hyprland setups,
+GNOME and KDE, on Wayland or X11, on 64-bit x86.
+
+1. Download **[PrtScr-linux-x64.run](https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run)**
+   and run it in a terminal:
+
+   ```bash
+   bash ~/Downloads/PrtScr-linux-x64.run
+   ```
+
+   It installs PrtScr for you alone in `~/.local/opt/PrtScr`, with no administrator rights, adds
+   it to your applications menu with a `prtscr` command, and starts it.
+2. When it offers to **install what PrtScr needs** (WebKitGTK, and `wl-clipboard` or `xclip`),
+   say yes. Your package manager asks for your password. If your package lists are out of date,
+   it says what to run first: `omarchy update` on Omarchy, `sudo pacman -Syu` on other Arch.
+3. On Omarchy or another Hyprland setup, say yes when it offers to make
+   <kbd>Print Screen</kbd> and <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> capture with
+   PrtScr. On GNOME or KDE, add a keyboard shortcut of your own that runs
+   `prtscr --capture-region`.
+4. PrtScr waits in your desktop's tray. On Wayland it captures through your desktop's portal,
+   which may ask once whether PrtScr may.
+
+Opening PrtScr again from the applications menu shows its library. On Omarchy, close the library
+window with <kbd>Super</kbd>+<kbd>W</kbd>; `prtscr --quit` quits PrtScr.
+`bash PrtScr-linux-x64.run --uninstall` removes it and gives Hyprland's keys back; your captures
+stay in `~/.local/share/PrtScr`.
+
+Not on Linux yet: screen recording, picking a window to capture (except on Hyprland), and backup
+locations that need a password or a sign-in.
+
 ## Updates
 
-PrtScr keeps itself up to date on both systems. It downloads a new version in the background and
+PrtScr keeps itself up to date on every system. It downloads a new version in the background and
 switches to it when you choose **Restart to update**, when you are away from the computer, or
 the next time PrtScr starts. Settings can turn that off, and **Check for updates** is in Settings
 and in the tray or menu bar menu.
@@ -109,6 +144,8 @@ taken out, and Settings lists each one exactly as it was sent.
 | `PrtScr-setup.exe` | The Windows installer, always the newest (also as `PrtScr-<version>-win-x64-setup.exe`). |
 | `PrtScr-macos.dmg` | Install PrtScr for macOS, which installs the right version for your Mac. |
 | `PrtScr-macos-arm64.dmg`, `PrtScr-macos-x64.dmg` | The Mac app itself, for Apple silicon and for Intel. |
+| `PrtScr-linux-x64.run` | The Linux installer, always the newest (also as `PrtScr-<version>-linux-x64.run`). Run it with `bash`. |
+| `PrtScr-<version>-linux-x64.tar.gz` | The Linux app itself, which installed copies update from. |
 | `prtscr-update.json` | What installed copies read to find an update: the version, where each download is, its size and its SHA-256. A copy installs an update only if the download matches. |
 
 ## Problems
@@ -118,5 +155,6 @@ what happened. PrtScr's log helps:
 
 - Windows: `%LOCALAPPDATA%\PrtScr\logs\app.log`
 - macOS: `~/Library/Application Support/PrtScr/logs/app.log`
+- Linux: `~/.local/share/PrtScr/logs/app.log`
 
 This repository holds PrtScr's releases and its website. Its source is kept elsewhere.
