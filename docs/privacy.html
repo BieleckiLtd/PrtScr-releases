@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrtScr privacy policy</title>
+<meta name="description" content="How PrtScr handles captures, Google Drive backups, optional diagnostics and feedback.">
+<link rel="icon" href="img/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="site.css">
+<style>
+.policy { max-width: 780px; padding-block: 60px 80px; }
+.policy h1 { font-size: clamp(36px, 7vw, 54px); line-height: 1.1; letter-spacing: -.035em; margin: 12px 0 16px; }
+.policy h2 { font-size: 24px; line-height: 1.3; margin: 40px 0 12px; }
+.policy p { color: var(--text-2); margin: 0 0 16px; }
+.policy .eyebrow { color: var(--accent-ink); }
+.policy-summary { background: var(--card-2); border: 1px solid var(--line-2); border-radius: 16px; padding: 22px; margin-block: 28px; color: var(--text-2); }
+.policy-summary strong { display: block; color: var(--text); margin-bottom: 6px; }
+.policy code { overflow-wrap: anywhere; }
+.foot nav { flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap nav-in"><a class="brand" href="./">PrtScr</a><nav aria-label="Page navigation"><a href="./">Back to PrtScr</a></nav></div></header>
+<main id="main" class="wrap policy">
+<p class="eyebrow">Your data</p>
+<h1>Privacy policy</h1>
+<p class="fine">Effective 30 October 2026</p>
+<p>This policy explains how PrtScr, maintained by BieleckiLtd, handles information when you use the desktop app and this website. Contact <a href="mailto:getprtscr@gmail.com">getprtscr@gmail.com</a> with privacy questions or requests.</p>
+<div class="policy-summary"><strong>Your library starts on your computer.</strong> You do not need a PrtScr account. Captures are sent elsewhere when you share them, connect a backup or sync destination, or choose to attach them to feedback.</div>
+<h2>Captures and local data</h2>
+<p>PrtScr processes screenshots, screen recordings, edits, thumbnails and library metadata on your computer. Screen text recognition uses the recognition engine available on your system. Your library, settings and diagnostic logs are stored locally. Captures can contain personal or confidential information, including text visible on your screen; review what you share.</p>
+<h2>Google Drive</h2>
+<p>Google Drive is optional. When you connect it, Google asks you to authorize PrtScr in your browser. PrtScr requests <code>https://www.googleapis.com/auth/drive.file</code>, which limits access to files created by, opened with or explicitly shared with PrtScr. It does not request access to all files in your Drive, Gmail, contacts or calendar.</p>
+<p>PrtScr uses this access to create its library folder and to list, upload, download and delete its backup and sync files. These files can include original captures and recordings, edits, thumbnails, recognized text and library metadata needed to back up your captures and bring your library and edits to another connected computer. Sync can propagate deletions. File names, file identifiers, folder identifiers and file contents are processed as needed to perform these operations.</p>
+<p>Google sign-in credentials are entered on Google's pages, not given to PrtScr. PrtScr stores authorization tokens in protected storage on your computer so it can continue syncing without asking you to sign in each time. Windows protects these with its Data Protection API; macOS uses encryption with a key held in your login Keychain. Requests go directly from your app to Google's services over HTTPS; the PrtScr maintainers do not receive a copy of your Drive library or tokens through this integration.</p>
+<p>Google user data is used only to provide the backup and sync features you choose. We do not sell Google user data, use it for advertising, use it to train general-purpose AI models, or allow maintainers to browse your Drive through the app. PrtScr's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
+<h2>Other backup, sync and sharing destinations</h2>
+<p>If you connect another storage provider, network server or folder, PrtScr sends library data to that destination to provide the backup or sync you configured. Connected computers can download that data. When you copy, export or drag a capture into another app, that app receives the content you share. The destination provider or recipient handles that copy under its own policies and your chosen access settings.</p>
+<h2>Optional error reports</h2>
+<p>Automatic error reports are off unless you enable <em>Send anonymous error reports</em>. Reports include technical error details, stack traces, the app and operating system versions, when the error occurred, and a random installation identifier. PrtScr removes recognized user and machine names, paths and email addresses from report text before sending it. Reports do not attach your captures or clipboard contents. Settings lets you inspect reports as sent and turn reporting off.</p>
+<p>Reports pass through a Cloudflare-hosted relay and are stored in a private GitHub repository for maintainers to investigate and fix failures. Redaction reduces identifying information but cannot guarantee that arbitrary error text contains no personal data.</p>
+<h2>Feedback and support</h2>
+<p>When you send feedback, PrtScr sends your message, an optional reply email address, app version, system and language information, and the usage information shown in the form. A problem report can include a redacted recent log, and you can choose attachments. Review the form before sending: attachments and your own message can contain personal information. Feedback and attachments pass through the Cloudflare relay and are stored in a private GitHub repository accessible to maintainers. An issue you post yourself on the public releases repository is public.</p>
+<h2>Updates, downloads and this website</h2>
+<p>PrtScr contacts GitHub and download hosts to check for and download updates and optional components. You can turn automatic updates off in Settings. This website is hosted by GitHub Pages and can request public release information from GitHub. The website does not add advertising or analytics trackers. Service providers receive ordinary connection information, such as your IP address, request time and browser or app request headers, and may retain service logs under their own policies.</p>
+<h2>Storage, security and retention</h2>
+<p>Local library data stays on your device until you remove it or PrtScr's deletion cleanup removes it. Deleted captures normally remain recoverable for 30 days. Backups, synced copies and files you share may persist separately; removing the app or a connection does not itself delete those copies. Cloud data is protected according to the provider and access settings you choose; PrtScr does not add end-to-end encryption to library files stored at a backup or sync destination.</p>
+<p>The relay temporarily keeps hashed network-address identifiers and counters to limit abuse; these counters expire after about two days. Submitted error reports and feedback are retained for troubleshooting and support; there is no fixed automatic deletion period for GitHub issues or attachment history. Cloudflare, GitHub and storage providers may process information outside your country under their own terms and privacy policies. No storage or transmission method is completely secure.</p>
+<h2>Your choices and deletion requests</h2>
+<p>You can use PrtScr without connecting a cloud account, disable error reporting, remove backup and sync destinations, and delete local captures. You can revoke PrtScr's Google access at <a href="https://myaccount.google.com/connections">Google Account connections</a>. Revocation stops future authorized access; it does not delete files already saved locally or in Drive. Delete unwanted cloud copies through the storage provider, and consider other connected devices before deleting synced content.</p>
+<p>To ask about, access, correct or request deletion of personal information you submitted to maintainers, email <a href="mailto:getprtscr@gmail.com">getprtscr@gmail.com</a> with enough detail to locate it. Do not email your password, authorization tokens or private captures merely to identify a request. Your applicable data protection rights are not limited by this policy.</p>
+<h2>Changes</h2>
+<p>We will update this page and its effective date when data handling changes. If a change introduces a new use of Google user data, PrtScr will seek the required consent before that use.</p>
+</main>
+<footer class="foot"><div class="wrap foot-in"><a class="brand" href="./">PrtScr</a><nav aria-label="Links"><a href="./">Home</a><a href="privacy.html" aria-current="page">Privacy policy</a><a href="mailto:getprtscr@gmail.com">Contact</a></nav></div></footer>
+</body>
+</html>
