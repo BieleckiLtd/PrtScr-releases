@@ -91,6 +91,11 @@
   $$('[data-keys-step="copy"]').forEach((el) => (el.innerHTML = kbds(COPY)));
   $$('[data-keys-text="capture"]').forEach((el) => (el.textContent = { mac: "⇧ ⌘ 2 on a Mac", linux: "PrtSc on Linux" }[os] ?? "PrtScr on Windows, ⇧ ⌘ 2 on a Mac"));
 
+  // Close the mobile section menu after navigating to an anchor.
+  $$(".mobile-menu nav a").forEach((link) =>
+    link.addEventListener("click", () => { $(".mobile-menu").open = false; }),
+  );
+
   // The newest release, for the version line.
   fetch("https://api.github.com/repos/BieleckiLtd/PrtScr-releases/releases/latest", { headers: { Accept: "application/vnd.github+json" } })
     .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
@@ -103,9 +108,10 @@
       hero.hidden = false;
       $("[data-version-foot]").textContent = ` ${v}`;
       $$("[data-version-term]").forEach((el) => (el.textContent = v));
-      // Local AI search came after 0.1.29: until a release has it, say it is on its way.
+      // Default to an upcoming label if the release lookup fails; hide it only once released.
       const [a, b, c] = v.split(".").map(Number);
-      if (a === 0 && (b < 1 || (b === 1 && c < 30))) $$("[data-ai-soon]").forEach((el) => (el.hidden = false));
+      const aiAvailable = a > 0 || b > 1 || (b === 1 && c >= 30);
+      $$("[data-ai-soon]").forEach((el) => (el.hidden = aiAvailable));
     })
     .catch(() => {});
 
@@ -539,7 +545,7 @@
       demo.classList.toggle("live", on.length > 0);
       if (!on.length) { text.textContent = idle; return; }
       const list = on.length === 1 ? on[0] : `${on.slice(0, -1).join(", ")} and ${on.at(-1)}`;
-      text.textContent = `Backing up to ${list}. Connect your other computer to the same place and captures, edits and deletions travel both ways while PrtScr runs. Competing edits are kept as copies, never overwritten.`;
+      text.textContent = `In PrtScr, you can back up to ${list}. Connect another computer to the same place to sync captures, edits and deletions. Conflicting edits are kept as separate copies. This example does not transfer files.`;
     }
     dests.addEventListener("click", (e) => {
       const b = e.target.closest(".dest");
