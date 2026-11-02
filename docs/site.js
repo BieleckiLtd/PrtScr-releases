@@ -485,6 +485,8 @@
     const flash = $("#fpFlash");
     const all = $("#fpAll");
     const barText = $("#fpBarText");
+    const steps = $$("#fpSteps li");
+    const cursor = $("#fpCursor");
     const VIEW = 300;
     const PARTS = 4;
     const SCALE = 120 / 420;
@@ -513,9 +515,24 @@
     new ResizeObserver(fit).observe(demo);
     fit();
 
+    // Where the pointer goes to click All of it, on the stage.
+    let target = [0, 0];
+    const aim = () => {
+      let x = all.offsetWidth / 2 - 6;
+      let y = all.offsetHeight / 2 - 4;
+      for (let el = all; el && el !== stage; el = el.offsetParent) { x += el.offsetLeft; y += el.offsetTop; }
+      target = [x, y];
+    };
+    aim();
+
     const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - (-2 * x + 2) ** 2 / 2);
     const span = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
     function render(t) {
+      const step = t < 1.5 ? 0 : t < 6.6 ? 1 : 2;
+      steps.forEach((li, i) => li.classList.toggle("on", i === step));
+      const k = ease(span(t, 0.35, 1.0));
+      cursor.style.transform = `translate(${300 + (target[0] - 300) * k}px, ${230 + (target[1] - 230) * k}px)`;
+      cursor.style.opacity = String(span(t, 0.2, 0.4) * (1 - span(t, 1.45, 1.7)));
       // How far the page is scrolled: a step between parts, then back to the top as it fades.
       let y = 0;
       for (let i = 0; i < PARTS - 1; i++) y += ease(span(t, T[i] + 0.35, T[i + 1] - 0.15)) * VIEW;
