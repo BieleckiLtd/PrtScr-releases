@@ -150,12 +150,12 @@
       </article>
       <article class="way">
         <span class="wi ai"><svg class="ico"><use href="#i-sparkles"/></svg></span>
-        <h3>What it’s about<span class="tag-soon" data-ai-soon>Next release</span></h3>
+        <h3>What it’s about<span class="tag-soon" data-soon>Next release</span></h3>
         <p>Switch on local AI search and <q>travel</q> finds a boarding pass, a train ticket and a hotel booking, whatever words they use. It knows many languages, so <q>podróż</q> finds them too.</p>
       </article>
       <article class="way">
         <span class="wi ai"><svg class="ico"><use href="#i-photo"/></svg></span>
-        <h3>What it shows<span class="tag-soon" data-ai-soon>Next release</span></h3>
+        <h3>What it shows<span class="tag-soon" data-soon>Next release</span></h3>
         <p>Pictures are looked at, not only read. Describe a photo with no words in it, <q>dog on a beach</q> or <q>sunset</q>, and PrtScr finds it.</p>
       </article>
     </div>
@@ -253,16 +253,66 @@
         <p>Capture a region that spans two monitors at different scaling, the screen under your pointer, or every screen at once. It comes out sharp, in one piece.</p>
       </article>
 
+      <article class="card wide">
+        <div class="demo demo-full" id="demoFull">
+          <div class="fp-stage" id="fpStage">
+            <div class="fp-win">
+              <div class="sc-chrome"><i></i><i></i><i></i><span class="sc-url"><svg class="ico xs"><use href="#i-lock"/></svg>northwind.example/changelog</span></div>
+              <div class="fp-view" id="fpView"><div class="fp-page" id="fpPage"></div><span class="fp-flash" id="fpFlash"></span></div>
+              <div class="fp-btns" id="fpBtns"><span class="fp-btn" id="fpAll"><svg class="ico xs" style="transform:rotate(-90deg)"><use href="#i-chevronLeft"/></svg>All of it</span><span class="fp-btn">From here down</span></div>
+            </div>
+            <span class="fp-bar" id="fpBar"><i></i><span id="fpBarText">Taking part 1 of 4</span><kbd>Esc</kbd></span>
+            <div class="fp-out" id="fpOut">
+              <div class="fp-parts" id="fpParts"></div>
+              <span class="fp-size mono" id="fpSize">One picture · 1280 × 3656</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-txt">
+          <h3>Capture a whole page</h3>
+          <p>Pick windows, and arrows appear on anything that scrolls: a web page, a document, a long chat. One click scrolls it to the end, captures each part and stitches them into one picture, ready to mark up. Press <kbd>Esc</kbd> to stop early and keep what it took. On Windows and macOS.</p>
+        </div>
+      </article>
+
       <article class="card wide stack">
         <div class="demo demo-sync" id="demoSync">
           <svg class="sync-lines" id="syncLines" aria-hidden="true"></svg>
-          <div class="node home" id="syncHome"><svg class="ico l"><use href="#i-monitor"/></svg><b>This computer</b><span>Your library</span></div>
-          <div class="dests" id="syncDests" role="group" aria-label="Backup and sync places"></div>
-          <div class="node other" id="syncOther"><svg class="ico l"><use href="#i-monitor"/></svg><b>Your other computer</b><span>Same library</span></div>
+          <div class="node home" id="syncHome">
+            <div class="node-h"><svg class="ico"><use href="#i-monitor"/></svg><b>This computer</b></div>
+            <div class="lib-dir"><span class="n">1</span><svg class="ico s"><use href="#i-folder"/></svg><span><b>Library folder</b><small>Saved here first</small></span></div>
+          </div>
+          <div class="dests-wrap">
+            <p class="dests-h"><span class="n">2</span>Then, only if you choose, sync with</p>
+            <div class="dests" id="syncDests" role="group" aria-label="Backup and sync places"></div>
+          </div>
+          <div class="node other" id="syncOther">
+            <div class="node-h"><svg class="ico"><use href="#i-monitor"/></svg><b>Your other computer</b></div>
+            <div class="lib-dir"><span class="n">1</span><svg class="ico s"><use href="#i-folder"/></svg><span><b>Library folder</b><small>Saved here first</small></span></div>
+          </div>
         </div>
         <div class="card-txt">
           <h3>Local first. Sync if you want.</h3>
-          <p id="syncText">Your library is stored locally by default. Choose a sample destination above to explore optional backup and sync; this demo does not transfer files.</p>
+          <p id="syncText">Every capture is saved to the library folder on your own computer first, and works with no connection. Pick places above to see how that folder can back up and sync; this example does not transfer files.</p>
+        </div>
+      </article>
+
+      <article class="card wide flip">
+        <div class="demo demo-agent" id="demoAgent">
+          <div class="ag-win">
+            <div class="ag-top">
+              <div class="seg ag-pick" role="group" aria-label="Coding agent">
+                <button type="button" class="on" data-agent="claude">Claude Code</button>
+                <button type="button" data-agent="codex">Codex</button>
+              </div>
+              <span class="ag-path mono">~/work/northwind</span>
+            </div>
+            <div class="ag-log mono" id="agLog" aria-live="off"></div>
+          </div>
+          <div class="ag-setup"><svg class="ico xs"><use href="#i-check"/></svg><span>Settings → Library → Coding agents: <b id="agAdded">Add to Claude Code</b></span></div>
+        </div>
+        <div class="card-txt">
+          <h3>Works with your coding agent<span class="tag-soon" data-soon>Next release</span></h3>
+          <p>Claude Code, Codex and other agents on your computer can take a screenshot, capture a whole page, find and read your captures, and record the screen, through PrtScr’s local MCP connection. Add it from Settings with one click. PrtScr itself sends nothing anywhere; what you give an agent goes wherever that agent sends it.</p>
         </div>
       </article>
     </div>
@@ -374,6 +424,7 @@ Press Print Screen or Super+Shift+S to capture.</div>
       <details><summary>Does PrtScr upload my captures?</summary><p>Not by default. Captures are stored in a local library. You can choose to share them or configure backup and sync under <em>Settings → Library and files</em>. Anonymous error reporting is separately opt-in and does not send captured content.</p></details>
       <details><summary>Where can it back up or sync to?</summary><p>A local folder, a network share, a mounted NFS folder, SFTP, WebDAV, FTP or FTPS, S3-compatible storage, OneDrive, Google Drive or Dropbox, as many as you like. Connect two computers to the same place and captures, edits and deletions travel both ways. Competing edits are kept as copies, never overwritten.</p></details>
       <details><summary>Does local AI search send my captures anywhere?</summary><p>No. It runs an AI model, Google’s EmbeddingGemma, on your own computer, with no account and no internet connection. Switch it on in <em>Settings → Library</em>: the model downloads once, about 320 MB, and PrtScr reads your captures into it while you are away from the computer. Nothing you capture or search for leaves your computer, and switching it off stops it reading anything more.</p></details>
+      <details><summary>Can my coding agent use PrtScr?</summary><p>From the next release, yes. Claude Code, Codex and other agents that run on your computer can take a screenshot, capture a whole page, search and read your captures, change settings and record the screen, through a local MCP connection. Add it under <em>Settings → Library → Coding agents</em>. PrtScr sends nothing itself; what an agent is given goes wherever that agent sends it, which for most is its AI service.</p></details>
       <details><summary>Where can it read text and search by meaning?</summary><p>Reading text uses your system’s own recognition, built into Windows and macOS; on Linux it uses tesseract, which the installer offers to add. Settings chooses the language to read, and the editor can read a picture again in another one. Local AI search runs on Windows, on Linux and on Macs with Apple silicon; on an Intel Mac it says it cannot run there.</p></details>
       <details><summary>How does it update?</summary><p>It downloads the next version in the background and switches to it when you choose <em>Restart to update</em>, when you are away, or the next time it starts. Settings can turn that off, and <em>Check for updates</em> is always there.</p></details>
       <details><summary>Does it send anything about me?</summary><p>Only if you turn on <em>Send anonymous error reports</em>. A report says what failed and where in PrtScr, with names, folders and e-mail addresses taken out, and nothing you captured or copied. Settings lists each one exactly as it was sent.</p></details>
