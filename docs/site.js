@@ -103,6 +103,9 @@
       hero.hidden = false;
       $("[data-version-foot]").textContent = ` ${v}`;
       $$("[data-version-term]").forEach((el) => (el.textContent = v));
+      // Local AI search came after 0.1.29: until a release has it, say it is on its way.
+      const [a, b, c] = v.split(".").map(Number);
+      if (a === 0 && (b < 1 || (b === 1 && c < 30))) $$("[data-ai-soon]").forEach((el) => (el.hidden = false));
     })
     .catch(() => {});
 
@@ -550,6 +553,134 @@
   })();
 
   // ---------------------------------------------------------------------------------------
+  // Find it again: a made-up library, searched by the words in each capture and, as local AI
+  // search would, by what each one is about or shows.
+  (function find() {
+    const demo = $("#demoFind");
+    if (!demo) return;
+    const lib = $("#findLib");
+    const grid = $("#findGrid");
+    const input = $("#findInput");
+    const count = $("#findCount");
+    const caret = $(".caret", demo);
+    const chips = $$("[data-q]", demo);
+    // As the library folds text: lower case, no accents, ł as l and ß as ss.
+    const fold = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ł/g, "l").replace(/ß/g, "ss");
+    const words = (s) => fold(s).split(/[^a-z0-9]+/).filter(Boolean);
+    const STOP = new Set(["a", "an", "the", "of", "on", "in", "at", "with", "and", "to", "by", "for", "w", "na", "z", "i", "der", "die", "das", "el", "la", "le", "un", "une", "de"]);
+    const ico = (name) => `<svg class="ico"><use href="#i-${name}"/></svg>`;
+    // What each capture is about, in a few languages: the demo's stand-in for the model.
+    const CAPTURES = [
+      ["boarding", "07:52", "A boarding pass from Warsaw to Lisbon", "travel trip journey flight fly plane airplane airport holiday vacation podroz lot samolot lotnisko wakacje reise flug urlaub viaje vuelo vacaciones voyage vol vacances"],
+      ["train", "08:05", "A Polish train ticket from Kraków to Gdańsk", "travel trip journey train rail railway commute podroz pociag kolej reise zug bahn viaje tren voyage"],
+      ["hotel", "09:31", "A hotel booking confirmation", "travel trip holiday vacation hotel booking reservation stay accommodation podroz wakacje nocleg rezerwacja reise urlaub viaje vacaciones voyage vacances"],
+      ["airport", "10:12", "A photo of a plane at an airport at sunset, with no words in it", "travel trip airport plane airplane aircraft flight sunset dusk evening sky window podroz lotnisko samolot zachod reise flughafen flugzeug viaje aeropuerto avion voyage aeroport"],
+      ["beach", "12:40", "A photo of a dog with a ball on a beach, with no words in it", "dog puppy pet animal beach sea ocean sand coast holiday vacation summer ball pies plaza morze wakacje lato hund strand meer perro playa chien plage"],
+      ["invoice", "14:18", "An invoice for 1,280 euros", "invoice bill payment money finance receipt accounting cost faktura rachunek platnosc rechnung factura facture"],
+      ["shop", "16:02", "A Polish shop's page for wireless headphones", "headphones headset earphones audio music sound shopping shop store buy price sluchawki muzyka zakupy sklep kopfhorer auriculares casque"],
+      ["tests", "17:45", "A terminal where 412 tests passed", "code programming software developer terminal console tests build kod programowanie"],
+    ];
+    grid.innerHTML = CAPTURES.map(([thumb, time, alt]) =>
+      `<div class="tile" role="listitem" aria-label="${alt}"><div class="th">${window.PrtScrThumbs.svg(thumb)}</div><span class="why"></span>` +
+      `<footer><span class="mono">${time}</span><span class="marks"></span></footer></div>`,
+    ).join("");
+    const tiles = $$(".tile", grid).map((el, i) => {
+      const marks = $$(".hl", el).map((r) => [r, r.dataset.words.split(" ")]);
+      const tokens = marks.flatMap(([, w]) => w);
+      // The tile's own marks, as the library shows them: text read, and ready for local AI search.
+      $(".marks", el).innerHTML =
+        (tokens.length ? `<span title="Text found">${ico("textScan")}</span>` : "") + `<span title="Ready for local AI search">${ico("sparkles")}</span>`;
+      return { el, why: $(".why", el), marks, tokens, about: CAPTURES[i][3].split(" ") };
+    });
+
+    function show(q) {
+      const qs = words(q);
+      const meant = qs.filter((w) => !STOP.has(w));
+      let found = 0;
+      let byAi = 0;
+      for (const t of tiles) {
+        const byText = qs.length > 0 && qs.every((w) => t.tokens.some((k) => k.startsWith(w)));
+        const byMeaning = !byText && meant.length > 0 && meant.every((w) => t.about.some((k) => k === w || (w.length >= 4 && k.startsWith(w))));
+        t.el.classList.toggle("hit", byText || byMeaning);
+        t.el.classList.toggle("by-text", byText);
+        t.el.classList.toggle("by-ai", byMeaning);
+        if (byText) t.why.innerHTML = `${ico("textScan")}Found in its text`;
+        if (byMeaning) t.why.innerHTML = `${ico("sparkles")}Found by local AI`;
+        for (const [r, w] of t.marks) r.classList.toggle("lit", byText && qs.some((x) => w.some((k) => k.startsWith(x))));
+        if (byText || byMeaning) found++;
+        if (byMeaning) byAi++;
+      }
+      lib.classList.toggle("searching", qs.length > 0);
+      count.textContent = !qs.length ? `${tiles.length} captures` : !found ? "No captures match." : `${found} found${byAi ? `, ${byAi} by local AI` : ""}`;
+      chips.forEach((b) => b.setAttribute("aria-pressed", String(fold(b.dataset.q) === fold(q.trim()))));
+    }
+
+    // The search waits for typing to rest, as the library's does.
+    const measure = document.createElement("canvas").getContext("2d");
+    let timer = 0;
+    function set(v, now = false) {
+      input.value = v;
+      const cs = getComputedStyle(input);
+      measure.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      caret.style.left = `${input.offsetLeft + measure.measureText(v).width + 1}px`;
+      clearTimeout(timer);
+      if (now || !v) show(v);
+      else timer = setTimeout(() => show(input.value), 260);
+    }
+
+    // Until someone searches, it types a few searches of its own.
+    const PLAN = ["krakow", "travel", "podróż", "dog on a beach", "headphones", "invoice"];
+    let touched = -1e9;
+    let next = 0;
+    let phase = "type";
+    let wait = 700;
+    const touch = () => {
+      touched = performance.now();
+      phase = "erase";
+      lib.classList.remove("auto");
+    };
+    input.addEventListener("input", () => { touch(); set(input.value); });
+    input.addEventListener("focus", touch);
+    chips.forEach((b) =>
+      b.addEventListener("click", () => {
+        touch();
+        set(b.dataset.q, true);
+      }),
+    );
+    if (reduceMotion) {
+      set("travel", true);
+      return;
+    }
+    set("");
+    lib.classList.add("auto");
+    whileVisible(demo, (dt, now) => {
+      if (document.activeElement === input || now - touched < 9000) return;
+      lib.classList.add("auto");
+      wait -= dt;
+      if (wait > 0) return;
+      const target = PLAN[next];
+      if (phase === "type") {
+        if (input.value.length < target.length) {
+          set(target.slice(0, input.value.length + 1));
+          wait = 70 + Math.random() * 70;
+        } else {
+          phase = "hold";
+          wait = 3000;
+        }
+      } else if (phase === "hold") {
+        phase = "erase";
+        next = (next + 1) % PLAN.length;
+      } else if (input.value) {
+        set(input.value.slice(0, -1));
+        wait = 30;
+      } else {
+        phase = "type";
+        wait = 450;
+      }
+    });
+  })();
+
+  // ---------------------------------------------------------------------------------------
   // Screens
   (function screens() {
     const img = $("#shotImg");
@@ -558,7 +689,7 @@
     const SHOTS = {
       editor: ["img/editor.png", "Mark up a capture with boxes, arrows, text, highlights and pixelation, then copy it in one click.", "The PrtScr editor: a capture of a traffic dashboard marked up with a box, a curved arrow, a handwritten note, a highlight and pixelated e-mail addresses"],
       video: ["img/video.png", "Cut recordings together with titles, pointer effects, fades and music, on as many tracks as you need.", "PrtScr's video editor: a preview above a timeline of titles, pointer effects and details, with a title clip selected"],
-      library: ["img/library.png", "Every capture, grouped by day, with categories, favourites, keywords and search.", "PrtScr's library: captures grouped by day beside a preview of the selected one"],
+      library: ["img/library.png", "Every capture, grouped by day, with categories, favourites and keywords, found again by the words in it or, with local AI search, by what it shows.", "PrtScr's library: captures grouped by day beside a preview of the selected one"],
     };
     const tabs = $$('.tabs [role="tab"]');
     tabs.forEach((tab) =>

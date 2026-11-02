@@ -33,6 +33,13 @@
     lock: '<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     arrow: '<path d="M5 19 19 5M10 5h9v9"/>',
+    search: '<path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0M21 21l-6-6"/>',
+    // The library's own marks: text read from a capture, and ready for local AI search.
+    textScan: '<path d="M8 12h8M8 9h6M8 15h4M3 7V5a2 2 0 0 1 2-2h2M3 17v2a2 2 0 0 0 2 2h2M17 3h2a2 2 0 0 1 2 2v2M17 21h2a2 2 0 0 0 2-2v-2"/>',
+    sparkles:
+      '<path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2-2a2 2 0 0 1-2-2a2 2 0 0 1-2 2m0-12a2 2 0 0 1 2 2a2 2 0 0 1 2-2a2 2 0 0 1-2-2a2 2 0 0 1-2 2m-7 12a6 6 0 0 1 6-6a6 6 0 0 1-6-6a6 6 0 0 1-6 6a6 6 0 0 1 6 6"/>',
+    photo:
+      '<path d="M15 8h.01M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM3 16l5-5c.93-.89 2.07-.89 3 0l5 5M14 14l1-1c.93-.89 2.07-.89 3 0l3 3"/>',
     windows: '<path fill="currentColor" stroke="none" d="M3 5.5 10.5 4.5v7H3zM11.5 4.35 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.35z"/>',
     // A penguin for Linux: body with the belly, eyes and beak cut out, then the feet.
     linux:

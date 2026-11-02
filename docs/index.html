@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PrtScr: screenshots and screen recordings for Windows, macOS and Linux</title>
-<meta name="description" content="Press one key to capture, mark up, record and share. Screenshots and screen recordings for Windows and macOS, and screenshots on Linux, with a real editor built in. No account, no watermark, and your captures stay on your disk.">
+<meta name="description" content="Press one key to capture, mark up, record and share. Screenshots and screen recordings for Windows and macOS, and screenshots on Linux, with a real editor built in, and a library you can search by the words in a capture or by what it shows, with AI that runs on your own computer. No account, no watermark, and your captures stay on your disk.">
 <meta name="theme-color" content="#0a0b0f">
 <meta property="og:title" content="PrtScr">
 <meta property="og:description" content="Press one key. Capture, mark up, record and share, all on your own machine.">
@@ -23,6 +23,7 @@
     <a class="brand" href="#top"><img src="img/icon.svg" width="26" height="26" alt="">PrtScr</a>
     <nav class="links" aria-label="Sections">
       <a href="#how">How it works</a>
+      <a href="#find">Search</a>
       <a href="#features">Features</a>
       <a href="#screens">Screens</a>
       <a href="#install">Install</a>
@@ -39,7 +40,7 @@
     <div class="wrap hero-in">
       <p class="eyebrow"><span class="dot"></span>Free for Windows, macOS and Linux<span class="ver" data-version hidden></span></p>
       <h1>Press one key.<br><span class="grad">Capture, mark up, record and share.</span></h1>
-      <p class="lede">A fast screenshot and screen recording app with a real editor built in. No account, no watermark, and every capture stays on your own disk.</p>
+      <p class="lede">A fast screenshot and screen recording app with a real editor built in, and a library that finds any capture by its words or by what it shows. No account, no watermark, and every capture stays on your own disk.</p>
       <div class="ctas">
         <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
         <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
@@ -92,6 +93,56 @@
       </ol>
       <div class="scene-ctl"><button type="button" class="btn ghost small" id="scenePlay" aria-pressed="false"><svg class="ico xs"><use href="#i-pause"/></svg><span>Pause</span></button></div>
     </div>
+  </section>
+
+  <!-- Search -->
+  <section class="find wrap" id="find">
+    <div class="sec-h">
+      <p class="eyebrow"><svg class="ico xs"><use href="#i-sparkles"/></svg>Find it again</p>
+      <h2>Find any capture by what’s in it</h2>
+      <p class="lede">Type a word you remember, or describe what you saw. PrtScr reads the text in every screenshot and, with local AI search, understands what each one shows. All of it on your own computer.</p>
+    </div>
+
+    <div class="find-demo" id="demoFind">
+      <div class="lib" id="findLib">
+        <div class="lib-bar">
+          <b class="lib-title">Library</b>
+          <label class="lib-search"><svg class="ico s"><use href="#i-search"/></svg><input id="findInput" type="search" placeholder="Search" aria-label="Search this example library" autocomplete="off" spellcheck="false"><i class="caret" aria-hidden="true"></i></label>
+          <span class="lib-count" id="findCount" aria-live="polite"></span>
+        </div>
+        <p class="lib-day">This week</p>
+        <div class="lib-grid" id="findGrid" role="list" aria-label="Example captures"></div>
+      </div>
+      <div class="find-try" role="group" aria-label="Searches to try">
+        <span>Try</span>
+        <button type="button" class="chip" data-q="krakow"><svg class="ico"><use href="#i-textScan"/></svg>krakow</button>
+        <button type="button" class="chip" data-q="invoice"><svg class="ico"><use href="#i-textScan"/></svg>invoice</button>
+        <button type="button" class="chip" data-q="travel"><svg class="ico"><use href="#i-sparkles"/></svg>travel</button>
+        <button type="button" class="chip" data-q="podróż"><svg class="ico"><use href="#i-sparkles"/></svg>podróż</button>
+        <button type="button" class="chip" data-q="headphones"><svg class="ico"><use href="#i-sparkles"/></svg>headphones</button>
+        <button type="button" class="chip" data-q="dog on a beach"><svg class="ico"><use href="#i-photo"/></svg>dog on a beach</button>
+        <button type="button" class="chip" data-q="sunset"><svg class="ico"><use href="#i-photo"/></svg>sunset</button>
+      </div>
+    </div>
+
+    <div class="ways">
+      <article class="way">
+        <span class="wi"><svg class="ico"><use href="#i-textScan"/></svg></span>
+        <h3>The words in it</h3>
+        <p>A moment after you take a screenshot, PrtScr reads its text. Search for any word you saw, with or without its accents: <q>krakow</q> finds <q>Kraków</q>. In the editor, select words right on the picture and copy them.</p>
+      </article>
+      <article class="way">
+        <span class="wi ai"><svg class="ico"><use href="#i-sparkles"/></svg></span>
+        <h3>What it’s about<span class="tag-soon" data-ai-soon hidden>Next update</span></h3>
+        <p>Switch on local AI search and <q>travel</q> finds a boarding pass, a train ticket and a hotel booking, whatever words they use. It knows many languages, so <q>podróż</q> finds them too.</p>
+      </article>
+      <article class="way">
+        <span class="wi ai"><svg class="ico"><use href="#i-photo"/></svg></span>
+        <h3>What it shows<span class="tag-soon" data-ai-soon hidden>Next update</span></h3>
+        <p>Pictures are looked at, not only read. Describe a photo with no words in it, <q>dog on a beach</q> or <q>sunset</q>, and PrtScr finds it.</p>
+      </article>
+    </div>
+    <p class="find-private"><svg class="ico"><use href="#i-lock"/></svg><span><b>Nothing leaves your computer.</b> Text is read by your system’s own recognition. Local AI search runs Google’s EmbeddingGemma model on your computer, offline: switch it on in <em>Settings → Library</em>, it downloads once (about 320 MB) and reads your captures while you are away. Nothing you capture or search for is sent anywhere.</span></p>
   </section>
 
   <!-- Features -->
@@ -305,6 +356,8 @@ Press Print Screen or Super+Shift+S to capture.</div>
       <details><summary>What does it cost?</summary><p>Nothing. There is no account, no subscription and no watermark.</p></details>
       <details><summary>Does PrtScr upload my captures?</summary><p>No. Every capture is kept in a library on your disk. Copying, saving and dragging are the only ways anything leaves, unless you connect a backup or sync location yourself in <em>Settings → Library and files</em>.</p></details>
       <details><summary>Where can it back up or sync to?</summary><p>A local folder, a network share, a mounted NFS folder, SFTP, WebDAV, FTP or FTPS, S3-compatible storage, OneDrive, Google Drive or Dropbox, as many as you like. Connect two computers to the same place and captures, edits and deletions travel both ways. Competing edits are kept as copies, never overwritten.</p></details>
+      <details><summary>Does local AI search send my captures anywhere?</summary><p>No. It runs an AI model, Google’s EmbeddingGemma, on your own computer, with no account and no internet connection. Switch it on in <em>Settings → Library</em>: the model downloads once, about 320 MB, and PrtScr reads your captures into it while you are away from the computer. Nothing you capture or search for leaves your computer, and switching it off stops it reading anything more.</p></details>
+      <details><summary>Where can it read text and search by meaning?</summary><p>Reading text uses your system’s own recognition, built into Windows and macOS; on Linux it uses tesseract, which the installer offers to add. Settings chooses the language to read, and the editor can read a picture again in another one. Local AI search runs on Windows, on Linux and on Macs with Apple silicon; on an Intel Mac it says it cannot run there.</p></details>
       <details><summary>How does it update?</summary><p>It downloads the next version in the background and switches to it when you choose <em>Restart to update</em>, when you are away, or the next time it starts. Settings can turn that off, and <em>Check for updates</em> is always there.</p></details>
       <details><summary>Does it send anything about me?</summary><p>Only if you turn on <em>Send anonymous error reports</em>. A report says what failed and where in PrtScr, with names, folders and e-mail addresses taken out, and nothing you captured or copied. Settings lists each one exactly as it was sent.</p></details>
       <details><summary>Does it work on Linux?</summary><p>Yes, as a preview. Screenshots, the library and the editor work on Omarchy and other Hyprland setups, GNOME and KDE, on Wayland or X11, on 64-bit x86. Not there yet: screen recording, picking a window to capture outside Hyprland, and backup locations that need a password or a sign-in.</p></details>

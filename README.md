@@ -7,7 +7,8 @@
 **Press one key. Capture, mark up, record and share, all on your own machine.**
 
 Screenshots and screen recordings for Windows and macOS, and screenshots on Linux.<br>
-A real editor built in. No account. No watermark. Your captures stay on your disk.
+A real editor built in. No account. No watermark. Your captures stay on your disk.<br>
+Find any capture by the words in it or by what it shows, with AI that runs on your own computer.
 
 [**Download for Windows**](https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe)
 &nbsp;·&nbsp;
@@ -30,7 +31,7 @@ A real editor built in. No account. No watermark. Your captures stay on your dis
   </tr>
   <tr>
     <td align="center"><b>Record and edit</b><br>Titles, pointer effects, fades and music on a timeline</td>
-    <td align="center"><b>Find it again</b><br>Every capture, kept on your disk</td>
+    <td align="center"><b>Find it again</b><br>Every capture, kept on your disk and found by its words or what it shows</td>
   </tr>
 </table>
 
@@ -45,6 +46,8 @@ A real editor built in. No account. No watermark. Your captures stay on your dis
 - **Mark it up.** Arrows that stay attached to what they point at, boxes, ellipses, a pen and a
   highlighter, and styled text in several fonts. Blur or pixelate anything private. Gradients,
   an eyedropper that reaches anywhere on screen, and undo for everything.
+- **Find anything again.** Search for any word in a capture, or describe what you saw: local AI
+  search finds a boarding pass for "travel" and a photo for "dog on a beach".
 - **Record your screen** to MP4, then trim, crop and cut it on a multi-track timeline with fades,
   crossfades, music and animated titles.
 - **Share it.** Copy a picture, or drag a finished recording straight into a chat.
@@ -53,6 +56,29 @@ A real editor built in. No account. No watermark. Your captures stay on your dis
 - **Keep it yours.** The library lives on your disk. Back it up or sync it between computers
   only if you want to: a folder, a network share, SFTP, WebDAV, FTP, S3-compatible storage,
   OneDrive, Google Drive or Dropbox.
+
+## Find anything you captured
+
+[![Searching PrtScr's library: "krakow" finds a train ticket by its text, "travel" and "podróż" find a boarding pass, a train ticket, a hotel booking and a photo of an airport, "dog on a beach" finds a photo with no words in it, and "headphones" finds a Polish shop's page](docs/img/search.webp)](https://bieleckiltd.github.io/PrtScr-releases/#find)
+
+<sub>An illustration from the website, with made-up captures. Try it there.</sub>
+
+Type a word you remember, or describe what you saw. The library's search looks at every capture
+three ways at once, all of it on your computer:
+
+- **The words in it.** A moment after you take a screenshot, PrtScr reads its text with your
+  system's own recognition. Search for any word you saw, with or without its accents: "krakow"
+  finds "Kraków". In the editor, select words right on the picture and copy them.
+- **What it is about.** Switch on **Local AI search** in **Settings → Library** and "travel" finds
+  a boarding pass, a train ticket and a hotel booking, whatever words they use. It knows many
+  languages, so "podróż" finds the same captures.
+- **What it shows.** Pictures are looked at, not only read: "dog on a beach" or "sunset" finds a
+  photo with no words in it at all.
+
+Local AI search runs Google's EmbeddingGemma model on your computer, offline. It downloads once
+(about 320 MB) and reads your captures while you are away from the computer. Nothing you capture
+or search for is sent anywhere. It runs on Windows, on Linux and on Macs with Apple silicon, and
+comes with the release after 0.1.29.
 
 ## Install on Windows
 
@@ -133,7 +159,7 @@ and in the tray or menu bar menu.
 ## Privacy
 
 Nothing you capture leaves your computer unless you send it or connect a backup location.
-There is no account. Error reports are off unless you turn on **Send anonymous error reports**;
+Reading the text in captures and local AI search both happen on your computer. There is no account. Error reports are off unless you turn on **Send anonymous error reports**;
 a report says what failed and where in PrtScr, with your names, folders and e-mail addresses
 taken out, and Settings lists each one exactly as it was sent.
 
