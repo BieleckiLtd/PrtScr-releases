@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PrtScr: screenshots and screen recordings for Windows, macOS and Linux</title>
-<meta name="description" content="Press one key to capture, mark up, record and share. Screenshots and screen recordings for Windows and macOS, and screenshots on Linux, with a real editor built in, and a library you can search by the words in a capture or by what it shows, with AI that runs on your own computer. No account, no watermark, and your captures stay on your disk.">
+<title>PrtScr | Capture, annotate, record and find screenshots</title>
+<meta name="description" content="PrtScr is a free screenshot and screen recording app for Windows and macOS, with Linux screenshot support in preview. Capture, annotate and edit without losing the original. Find screenshots in your local library. No account or watermark.">
 <meta name="theme-color" content="#0a0b0f">
 <meta property="og:title" content="PrtScr">
-<meta property="og:description" content="Press one key. Capture, mark up, record and share, all on your own machine.">
+<meta property="og:description" content="Capture it. Mark it up. Find it again. Free screenshot and screen recording software with a local library and non-destructive editing.">
 <meta property="og:image" content="https://bieleckiltd.github.io/PrtScr-releases/img/og.png">
 <meta property="og:url" content="https://bieleckiltd.github.io/PrtScr-releases/">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,7 +29,18 @@
       <a href="#install">Install</a>
       <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases">Releases</a>
     </nav>
-    <a class="btn primary small dl" data-dl href="#install"><svg class="ico s"><use href="#i-download"/></svg><span data-dl-label>Download</span></a>
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile sections">
+        <a href="#how">How it works</a>
+        <a href="#find">Search</a>
+        <a href="#features">Features</a>
+        <a href="#screens">Screens</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/BieleckiLtd/PrtScr-releases/releases">Releases</a>
+      </nav>
+    </details>
+    <a class="btn primary small dl" data-dl href="#install"><svg class="ico s"><use href="#i-download"/></svg><span data-dl-label>Download</span><span class="dl-mobile-label">Download</span></a>
   </div>
 </header>
 
@@ -38,15 +49,20 @@
   <section class="hero" id="top">
     <div class="sky" aria-hidden="true"><i class="sun"></i><i class="arc a1"></i><i class="arc a2"></i></div>
     <div class="wrap hero-in">
-      <p class="eyebrow"><span class="dot"></span>Free for Windows, macOS and Linux<span class="ver" data-version hidden></span></p>
-      <h1>Press one key.<br><span class="grad">Capture, mark up, record and share.</span></h1>
-      <p class="lede">A fast screenshot and screen recording app with a real editor built in, and a library that finds any capture by its words or by what it shows. No account, no watermark, and every capture stays on your own disk.</p>
+      <p class="eyebrow"><span class="dot"></span>Free for Windows and macOS · Linux preview<span class="ver" data-version hidden></span></p>
+      <h1>Capture it. Mark it up.<br><span class="grad">Find it again.</span></h1>
+      <p class="lede">Capture a region, window or screen in a keystroke. Annotate screenshots, edit recordings and find past captures in your own library. Your originals stay untouched. No account or watermark.</p>
       <div class="ctas">
         <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
         <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
         <a class="btn ghost big" data-os-link="linux" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-linux-x64.run"><svg class="ico"><use href="#i-linux"/></svg>Download for Linux</a>
       </div>
-      <p class="fine">Windows 10 (version 2004) or later · macOS 13 or later · Linux x64, in preview · <a href="#install">How to install</a></p>
+      <ul class="hero-highlights" aria-label="Why choose PrtScr">
+        <li>Originals preserved</li>
+        <li>Search inside screenshots</li>
+        <li>Private by default</li>
+      </ul>
+      <p class="fine">Windows 10 (version 2004) or later · macOS 13 or later · Linux x64 in preview · <a href="#install">Installation guide</a></p>
     </div>
 
     <div class="wrap">
@@ -99,8 +115,8 @@
   <section class="find wrap" id="find">
     <div class="sec-h">
       <p class="eyebrow"><svg class="ico xs"><use href="#i-sparkles"/></svg>Find it again</p>
-      <h2>Find any capture by what’s in it</h2>
-      <p class="lede">Type a word you remember, or describe what you saw. PrtScr reads the text in every screenshot and, with local AI search, understands what each one shows. All of it on your own computer.</p>
+      <h2>Find it without remembering the filename</h2>
+      <p class="lede">Search for words inside a screenshot. With optional local AI search, you can also describe what an image shows, even if it contains no text. Recognition and search run on your computer.</p>
     </div>
 
     <div class="find-demo" id="demoFind">
@@ -124,6 +140,7 @@
         <button type="button" class="chip" data-q="sunset"><svg class="ico"><use href="#i-photo"/></svg>sunset</button>
       </div>
     </div>
+    <p class="demo-note">Interactive illustration using fictional captures. Search results are simulated to show how the feature works.</p>
 
     <div class="ways">
       <article class="way">
@@ -133,24 +150,24 @@
       </article>
       <article class="way">
         <span class="wi ai"><svg class="ico"><use href="#i-sparkles"/></svg></span>
-        <h3>What it’s about<span class="tag-soon" data-ai-soon hidden>Next update</span></h3>
+        <h3>What it’s about<span class="tag-soon" data-ai-soon>Next release</span></h3>
         <p>Switch on local AI search and <q>travel</q> finds a boarding pass, a train ticket and a hotel booking, whatever words they use. It knows many languages, so <q>podróż</q> finds them too.</p>
       </article>
       <article class="way">
         <span class="wi ai"><svg class="ico"><use href="#i-photo"/></svg></span>
-        <h3>What it shows<span class="tag-soon" data-ai-soon hidden>Next update</span></h3>
+        <h3>What it shows<span class="tag-soon" data-ai-soon>Next release</span></h3>
         <p>Pictures are looked at, not only read. Describe a photo with no words in it, <q>dog on a beach</q> or <q>sunset</q>, and PrtScr finds it.</p>
       </article>
     </div>
-    <p class="find-private"><svg class="ico"><use href="#i-lock"/></svg><span><b>Nothing leaves your computer.</b> Text is read by your system’s own recognition. Local AI search runs Google’s EmbeddingGemma model on your computer, offline: switch it on in <em>Settings → Library</em>, it downloads once (about 320 MB) and reads your captures while you are away. Nothing you capture or search for is sent anywhere.</span></p>
+    <p class="find-private"><svg class="ico"><use href="#i-lock"/></svg><span><b>Search stays on your computer.</b> Text recognition uses your operating system’s tools. Optional AI search runs Google’s EmbeddingGemma locally, after a one-time model download of about 320 MB. Your captures and search queries are not sent to an AI service. Enable it under <em>Settings → Library</em> when available.</span></p>
   </section>
 
   <!-- Features -->
   <section class="features wrap" id="features">
     <div class="sec-h">
       <p class="eyebrow">What it does</p>
-      <h2>Everything between the key and the conversation</h2>
-      <p class="lede">Try them here: drag, slide and click.</p>
+      <h2>More than a screenshot shortcut</h2>
+      <p class="lede">Explore the interactive examples: drag a button, move a slider or click the video timeline.</p>
     </div>
 
     <div class="bento">
@@ -222,8 +239,8 @@
           <div class="crop-box" id="cropBox"><i></i><i></i><i></i><i></i><span class="crop-dim mono" id="cropDim"></span></div>
           <label class="crop-ctl"><span>Crop</span><input type="range" id="cropRange" min="0" max="100" value="62" aria-label="How tight the crop is"><span class="faint">Original kept</span></label>
         </div>
-        <h3>Nothing is ever lost</h3>
-        <p>Crops, trims and edits never touch the original. Widen a crop next week, undo anything, and get a deleted capture back for 30 days.</p>
+        <h3>Keep every original</h3>
+        <p>Crops, trims and edits never overwrite the original. Adjust a crop later, undo a change or recover a deleted capture within 30 days.</p>
       </article>
 
       <article class="card">
@@ -244,8 +261,8 @@
           <div class="node other" id="syncOther"><svg class="ico l"><use href="#i-monitor"/></svg><b>Your other computer</b><span>Same library</span></div>
         </div>
         <div class="card-txt">
-          <h3>Your library stays on your disk</h3>
-          <p id="syncText">Nothing leaves this computer unless you send it. Pick a place above to see what backing up and syncing looks like.</p>
+          <h3>Local first. Sync if you want.</h3>
+          <p id="syncText">Your library is stored locally by default. Choose a sample destination above to explore optional backup and sync; this demo does not transfer files.</p>
         </div>
       </article>
     </div>
@@ -255,7 +272,7 @@
   <section class="screens wrap" id="screens">
     <div class="sec-h">
       <p class="eyebrow">A look around</p>
-      <h2>Made to stay out of your way</h2>
+      <h2>See the real PrtScr interface</h2>
     </div>
     <div class="tabs" role="tablist" aria-label="Screens">
       <button type="button" role="tab" aria-selected="true" data-shot="editor">Editor</button>
@@ -266,14 +283,14 @@
       <img id="shotImg" src="img/editor.png" width="2784" height="1650" alt="The PrtScr editor: a capture of a traffic dashboard marked up with a box, a curved arrow, a handwritten note, a highlight and pixelated e-mail addresses" loading="lazy">
       <figcaption id="shotCap">Mark up a capture with boxes, arrows, text, highlights and pixelation, then copy it in one click.</figcaption>
     </figure>
-    <p class="fine center">Real screenshots of PrtScr on a Mac. The pages, names and figures in the captures are made up.</p>
+    <p class="fine center">Real screenshots of PrtScr on a Mac. The sample pages, names and figures shown are fictional.</p>
   </section>
 
   <!-- Shortcuts -->
   <section class="keys wrap" aria-labelledby="keysH">
     <div class="sec-h">
       <p class="eyebrow">Shortcuts</p>
-      <h2 id="keysH">Your hands never leave the keyboard</h2>
+      <h2 id="keysH">Capture without breaking your flow</h2>
     </div>
     <div class="ktable">
       <div class="khead"><span></span><span><svg class="ico s"><use href="#i-windows"/></svg>Windows</span><span><svg class="ico s"><use href="#i-apple"/></svg>Mac</span><span><svg class="ico s"><use href="#i-linux"/></svg>Linux</span></div>
@@ -290,8 +307,8 @@
   <section class="install wrap" id="install">
     <div class="sec-h">
       <p class="eyebrow">Install</p>
-      <h2>Up and running in a minute</h2>
-      <p class="lede">One download for each system. PrtScr keeps itself up to date after that, on all three.</p>
+      <h2>Choose your platform</h2>
+      <p class="lede">Download PrtScr and follow the steps below. It runs from the system tray on Windows and Linux, or the menu bar on a Mac.</p>
     </div>
     <div class="os-cards">
       <article class="os" data-os="windows">
@@ -354,7 +371,7 @@ Press Print Screen or Super+Shift+S to capture.</div>
     <div class="sec-h"><p class="eyebrow">Questions</p><h2 id="faqH">Good to know</h2></div>
     <div class="qs">
       <details><summary>What does it cost?</summary><p>Nothing. There is no account, no subscription and no watermark.</p></details>
-      <details><summary>Does PrtScr upload my captures?</summary><p>No. Every capture is kept in a library on your disk. Copying, saving and dragging are the only ways anything leaves, unless you connect a backup or sync location yourself in <em>Settings → Library and files</em>.</p></details>
+      <details><summary>Does PrtScr upload my captures?</summary><p>Not by default. Captures are stored in a local library. You can choose to share them or configure backup and sync under <em>Settings → Library and files</em>. Anonymous error reporting is separately opt-in and does not send captured content.</p></details>
       <details><summary>Where can it back up or sync to?</summary><p>A local folder, a network share, a mounted NFS folder, SFTP, WebDAV, FTP or FTPS, S3-compatible storage, OneDrive, Google Drive or Dropbox, as many as you like. Connect two computers to the same place and captures, edits and deletions travel both ways. Competing edits are kept as copies, never overwritten.</p></details>
       <details><summary>Does local AI search send my captures anywhere?</summary><p>No. It runs an AI model, Google’s EmbeddingGemma, on your own computer, with no account and no internet connection. Switch it on in <em>Settings → Library</em>: the model downloads once, about 320 MB, and PrtScr reads your captures into it while you are away from the computer. Nothing you capture or search for leaves your computer, and switching it off stops it reading anything more.</p></details>
       <details><summary>Where can it read text and search by meaning?</summary><p>Reading text uses your system’s own recognition, built into Windows and macOS; on Linux it uses tesseract, which the installer offers to add. Settings chooses the language to read, and the editor can read a picture again in another one. Local AI search runs on Windows, on Linux and on Macs with Apple silicon; on an Intel Mac it says it cannot run there.</p></details>
@@ -367,7 +384,7 @@ Press Print Screen or Super+Shift+S to capture.</div>
 
   <section class="final wrap">
     <img src="img/icon.svg" width="56" height="56" alt="">
-    <h2>Press one key.</h2>
+    <h2>Capture something. Keep it useful.</h2>
     <div class="ctas">
       <a class="btn primary big" data-os-link="windows" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-setup.exe"><svg class="ico"><use href="#i-windows"/></svg>Download for Windows</a>
       <a class="btn ghost big" data-os-link="mac" href="https://github.com/BieleckiLtd/PrtScr-releases/releases/latest/download/PrtScr-macos.dmg"><svg class="ico"><use href="#i-apple"/></svg>Download for Mac</a>
