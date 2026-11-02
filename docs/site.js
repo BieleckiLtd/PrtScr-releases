@@ -108,10 +108,11 @@
       hero.hidden = false;
       $("[data-version-foot]").textContent = ` ${v}`;
       $$("[data-version-term]").forEach((el) => (el.textContent = v));
-      // Default to an upcoming label if the release lookup fails; hide it only once released.
+      // Local AI search and the agent connection come in 0.1.30. Default to an upcoming label if
+      // the release lookup fails; hide it only once released.
       const [a, b, c] = v.split(".").map(Number);
-      const aiAvailable = a > 0 || b > 1 || (b === 1 && c >= 30);
-      $$("[data-ai-soon]").forEach((el) => (el.hidden = aiAvailable));
+      const released = a > 0 || b > 1 || (b === 1 && c >= 30);
+      $$("[data-soon]").forEach((el) => (el.hidden = released));
     })
     .catch(() => {});
 
@@ -474,12 +475,178 @@
   })();
 
   // ---------------------------------------------------------------------------------------
-  // Your library stays on your disk, unless you choose a place for it.
+  // A whole page: All of it scrolls the panel to its end, takes each part and stitches them.
+  (function fullPage() {
+    const demo = $("#demoFull");
+    if (!demo) return;
+    const stage = $("#fpStage");
+    const page = $("#fpPage");
+    const parts = $("#fpParts");
+    const flash = $("#fpFlash");
+    const all = $("#fpAll");
+    const barText = $("#fpBarText");
+    const VIEW = 300;
+    const PARTS = 4;
+    const SCALE = 120 / 420;
+    const GAP = 8 / SCALE;
+    const D = 10.6;
+    const T = [1.7, 3.2, 4.7, 6.2];
+
+    const lines = (...w) => w.map((x) => `<i class="ln" style="width:${x}%"></i>`).join("");
+    const ENTRIES = [
+      ["Nov 2026", "Exports are twice as fast", "linear-gradient(135deg,#5a62f2,#8ea3ff)", [96, 88, 62]],
+      ["Oct 2026", "Dark mode for every report", "linear-gradient(135deg,#1d1f2a,#3a3d52)", [92, 74]],
+      ["Sep 2026", "Share a dashboard by link", "linear-gradient(135deg,#ffb36b,#ff6a5b)", [90, 96, 48]],
+      ["Aug 2026", "Weekly summaries by e-mail", "linear-gradient(135deg,#3ccb8f,#1f9d6e)", [84, 66]],
+    ];
+    const html =
+      `<div class="fp-nav"><span class="lg"></span>Northwind<u><i></i><i></i><i></i></u></div>` +
+      `<div class="fp-hero"><b>What's new</b><span>Every change to Northwind, newest first.</span></div>` +
+      ENTRIES.map(([when, title, pic, ln]) => `<div class="fp-entry"><span class="when">${when}</span><b>${title}</b>${lines(...ln)}<div class="pic" style="background:${pic}"></div></div>`).join("") +
+      `<div class="fp-foot"><b>Northwind</b> · Changelog</div>`;
+    page.innerHTML = html;
+    parts.style.transform = `scale(${SCALE})`;
+    parts.innerHTML = Array.from({ length: PARTS }, (_, i) => `<div class="fp-part"><div class="fp-page" style="top:${-i * VIEW}px">${html}</div></div>`).join("");
+    const shots = $$(".fp-part", parts);
+
+    const fit = () => (stage.style.transform = `scale(${demo.clientWidth / 760})`);
+    new ResizeObserver(fit).observe(demo);
+    fit();
+
+    const ease = (x) => (x < 0.5 ? 2 * x * x : 1 - (-2 * x + 2) ** 2 / 2);
+    const span = (t, a, b) => clamp((t - a) / (b - a), 0, 1);
+    function render(t) {
+      // How far the page is scrolled: a step between parts, then back to the top as it fades.
+      let y = 0;
+      for (let i = 0; i < PARTS - 1; i++) y += ease(span(t, T[i] + 0.35, T[i + 1] - 0.15)) * VIEW;
+      y -= ease(span(t, 9.7, 10.4)) * (PARTS - 1) * VIEW;
+      page.style.transform = `translateY(${-y}px)`;
+      demo.classList.toggle("picking", t >= 0.4 && t < 1.5);
+      all.classList.toggle("press", t >= 1.15 && t < 1.5);
+      demo.classList.toggle("taking", t >= 1.5 && t < 6.6);
+      const at = T.reduce((n, x, i) => (t >= x ? i + 1 : n), 0);
+      barText.textContent = `Taking part ${Math.max(1, at)} of ${PARTS}`;
+      const sinceShot = Math.min(...T.map((x) => (t >= x ? t - x : 99)));
+      flash.style.opacity = sinceShot < 0.3 ? String(0.7 * (1 - sinceShot / 0.3)) : "0";
+      shots.forEach((s, i) => {
+        const k = ease(span(t, T[i], T[i] + 0.45));
+        s.style.opacity = String(k * (1 - span(t, 9.6, 10.1)));
+        s.style.transform = `translateX(${(1 - k) * -90}px)`;
+      });
+      parts.style.setProperty("--gap", `${(1 - ease(span(t, 6.7, 7.4))) * GAP}px`);
+      parts.classList.toggle("stitched", t >= 7.4 && t < 10.1);
+      demo.classList.toggle("done", t >= 7.5 && t < 9.6);
+    }
+
+    if (reduceMotion) {
+      render(8.5);
+      return;
+    }
+    let t = 0;
+    whileVisible(demo, (dt) => {
+      t = (t + dt / 1000) % D;
+      render(t);
+    });
+    render(0);
+  })();
+
+  // ---------------------------------------------------------------------------------------
+  // A coding agent on this computer using PrtScr's tools: asked, it calls them, and answers.
+  (function agent() {
+    const demo = $("#demoAgent");
+    if (!demo) return;
+    const log = $("#agLog");
+    const added = $("#agAdded");
+    const path = $(".ag-path", demo);
+    const picks = $$("[data-agent]", demo);
+    const AGENTS = {
+      claude: { name: "Claude Code", cmd: "claude", p: ">" },
+      codex: { name: "Codex", cmd: "codex", p: "›" },
+    };
+    let who = "claude";
+    // What the user asks, the tools the agent calls (name, argument, result) and what it says.
+    const TALKS = [
+      [
+        "Find yesterday's screenshot of the build error and fix it",
+        [["search_captures", "\"build failed\"", "2 found"], ["view_capture", "yesterday 16:42", "1440 × 900"], ["read_capture_text", "", "14 lines"]],
+        "It says Cannot find module './theme' in src/app.ts. Fixing the import now.",
+      ],
+      [
+        "Capture the whole pricing page and tell me what looks off",
+        [["capture_scrolling", "browser, all of it", "1 picture"], ["view_capture", "just now", "1280 × 4210"]],
+        "The third plan's button sits lower than the other two. Aligning them in pricing.css.",
+      ],
+      [
+        "Record me trying the sign-up form, then stop when I say",
+        [["start_recording", "main screen", "recording"], ["stop_recording", "", "MP4 saved"]],
+        "Saved in your PrtScr library, ready to trim or drag into the bug report.",
+      ],
+      [
+        "Turn on local AI search",
+        [["change_settings", "local AI search: on", "done"]],
+        "Local AI search is on. PrtScr downloads the model once, about 320 MB.",
+      ],
+    ];
+    const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    // How long each piece takes, in seconds.
+    const TYPE = 1 / 30;
+    const TOOL = 0.75;
+    const SAY = 1 / 70;
+    const HOLD = 2.6;
+    const length = ([ask, tools, say]) => 0.4 + ask.length * TYPE + 0.4 + tools.length * TOOL + 0.3 + say.length * SAY + HOLD;
+    const total = TALKS.reduce((s, x) => s + length(x), 0);
+
+    function render(t) {
+      let i = 0;
+      while (t > length(TALKS[i])) { t -= length(TALKS[i]); i = (i + 1) % TALKS.length; }
+      const [ask, tools, say] = TALKS[i];
+      const p = AGENTS[who].p;
+      let out = "";
+      let x = t - 0.4;
+      const typed = clamp(Math.floor(x / TYPE), 0, ask.length);
+      const asking = typed < ask.length;
+      out += `<div class="you"><span class="p">${p}</span> ${esc(ask.slice(0, typed))}${asking ? '<span class="cur"></span>' : ""}</div>`;
+      x -= ask.length * TYPE + 0.4;
+      tools.forEach(([name, arg, res], k) => {
+        const into = x - k * TOOL;
+        if (into < 0) return;
+        const done = into > TOOL * 0.7;
+        out += `<div class="tool"><i class="${done ? "" : "run"}">${done ? "✓" : "●"}</i> prtscr.<b>${name}</b>${arg ? ` ${esc(arg)}` : ""}${done ? ` <span class="r">→ ${esc(res)}</span>` : ""}</div>`;
+      });
+      x -= tools.length * TOOL + 0.3;
+      if (x > 0) {
+        const n = clamp(Math.floor(x / SAY), 0, say.length);
+        out += `<div class="say">${esc(say.slice(0, n))}${n < say.length ? "" : '<span class="cur"></span>'}</div>`;
+      }
+      if (out !== shown) log.innerHTML = shown = out;
+    }
+
+    let shown = "";
+    let t = 0;
+    function pick(name) {
+      who = name;
+      picks.forEach((b) => b.classList.toggle("on", b.dataset.agent === name));
+      added.textContent = `Add to ${AGENTS[name].name}`;
+      path.textContent = `~/work/northwind · ${AGENTS[name].cmd}`;
+      render(reduceMotion ? length(TALKS[0]) - 0.01 : t);
+    }
+    picks.forEach((b) => b.addEventListener("click", () => pick(b.dataset.agent)));
+    pick(who);
+    if (reduceMotion) return;
+    whileVisible(demo, (dt) => {
+      t = (t + dt / 1000) % total;
+      render(t);
+    });
+  })();
+
+  // ---------------------------------------------------------------------------------------
+  // Your library stays on your disk, unless you choose a place for it: each computer saves to
+  // its own library folder first, and only that folder syncs with the places you pick.
   (function sync() {
     const demo = $("#demoSync");
     if (!demo) return;
     const places = [
-      ["Local folder", "folder"],
+      ["USB or other drive", "drive"],
       ["Network share", "server"],
       ["SFTP / SSH", "terminal"],
       ["WebDAV", "cloud"],
@@ -504,10 +671,13 @@
       svg.setAttribute("viewBox", `0 0 ${box.width} ${box.height}`);
       const h = home.getBoundingClientRect();
       const o = other.getBoundingClientRect();
+      // The lines leave and reach each computer at its library folder, never the computer itself.
+      const hd = $(".lib-dir", home).getBoundingClientRect();
+      const od = $(".lib-dir", other).getBoundingClientRect();
       const hx = h.right - box.left;
-      const hy = h.top + h.height / 2 - box.top;
+      const hy = hd.top + hd.height / 2 - box.top;
       const ox = o.left - box.left;
-      const oy = o.top + o.height / 2 - box.top;
+      const oy = od.top + od.height / 2 - box.top;
       // Side by side on a wide screen, one above the other on a narrow one.
       const stacked = h.bottom <= dests.getBoundingClientRect().top;
       const hb = h.bottom - box.top;
@@ -545,7 +715,7 @@
       demo.classList.toggle("live", on.length > 0);
       if (!on.length) { text.textContent = idle; return; }
       const list = on.length === 1 ? on[0] : `${on.slice(0, -1).join(", ")} and ${on.at(-1)}`;
-      text.textContent = `In PrtScr, you can back up to ${list}. Connect another computer to the same place to sync captures, edits and deletions. Conflicting edits are kept as separate copies. This example does not transfer files.`;
+      text.textContent = `Each capture is saved to the library folder on this computer first, then copied to ${list}. Your other computer, connected to the same place, brings it into its own library folder, and captures, edits and deletions travel both ways. Conflicting edits are kept as separate copies. This example does not transfer files.`;
     }
     dests.addEventListener("click", (e) => {
       const b = e.target.closest(".dest");
