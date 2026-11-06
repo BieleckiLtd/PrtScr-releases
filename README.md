@@ -94,6 +94,10 @@ comes with the release after 0.1.29.
    <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>PrtScr</kbd> to record. If another app already has the
    key, PrtScr takes the next free shortcut and tells you which one.
 
+Prefer the command line? In a terminal, run `winget install BieleckiLtd.PrtScr`. It installs the
+same setup. winget's listing may trail the newest release, which doesn't matter: PrtScr updates
+itself, so you don't need `winget upgrade`.
+
 Needs 64-bit Windows 10 version 2004 or later, or Windows 11. If you left recording out, add it
 any time from **Settings → Optional features**.
 
