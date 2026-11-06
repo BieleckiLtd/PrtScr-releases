@@ -435,9 +435,9 @@ section.find { padding-top: 110px; }
 @keyframes monlabel { 0%, 40% { opacity: 0; } 48%, 85% { opacity: 1; } 95%, 100% { opacity: 0; } }
 
 /* Full-page capture: a fixed stage, scaled to the card like the hero scene. */
-.demo-full { aspect-ratio: 760 / 440; background: radial-gradient(420px 280px at 25% 0%, rgba(255, 150, 90, 0.28), transparent 70%), linear-gradient(160deg, #26246e, #4a44c4); }
-.fp-stage { position: absolute; left: 0; top: 0; width: 760px; height: 440px; transform-origin: 0 0; }
-.fp-win { position: absolute; left: 36px; top: 30px; width: 420px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px rgba(14, 10, 60, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.demo-full { aspect-ratio: 760 / 470; background: radial-gradient(420px 280px at 25% 0%, rgba(255, 150, 90, 0.28), transparent 70%), linear-gradient(160deg, #26246e, #4a44c4); }
+.fp-stage { position: absolute; left: 0; top: 0; width: 760px; height: 470px; transform-origin: 0 0; }
+.fp-win { position: absolute; left: 36px; top: 64px; width: 420px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px rgba(14, 10, 60, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12); }
 .fp-view { position: relative; height: 300px; overflow: hidden; }
 .fp-view::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px var(--accent-2); opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
 .demo-full.picking .fp-view::after, .demo-full.taking .fp-view::after { opacity: 1; }
@@ -446,11 +446,11 @@ section.find { padding-top: 110px; }
 .demo-full.picking .fp-btns { opacity: 1; transform: none; }
 .fp-btn { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 9px; background: rgba(18, 19, 26, 0.9); color: #fff; font-size: 12.5px; font-weight: 650; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.14); transition: background 0.15s ease, transform 0.15s ease; }
 .fp-btn.press { background: var(--accent); transform: scale(0.96); }
-.fp-bar { position: absolute; left: 36px; top: 386px; display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 8px 0 12px; border-radius: 10px; background: rgba(12, 13, 16, 0.88); color: #fff; font-size: 12.5px; font-weight: 600; opacity: 0; transition: opacity 0.25s ease; }
+.fp-bar { position: absolute; left: 36px; top: 412px; display: inline-flex; align-items: center; gap: 9px; height: 32px; padding: 0 8px 0 12px; border-radius: 10px; background: rgba(12, 13, 16, 0.88); color: #fff; font-size: 12.5px; font-weight: 600; opacity: 0; transition: opacity 0.25s ease; }
 .fp-bar > i { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); box-shadow: 0 0 0 3px rgba(255, 74, 91, 0.25); }
 .fp-bar kbd { height: 22px; min-width: 0; padding: 0 7px; font-size: 11px; border-radius: 6px; }
 .demo-full.taking .fp-bar { opacity: 1; }
-.fp-out { position: absolute; left: 548px; top: 30px; width: 120px; height: 367px; }
+.fp-out { position: absolute; left: 548px; top: 64px; width: 120px; height: 367px; }
 .fp-part + .fp-part { margin-top: var(--gap, 28px); }
 .fp-parts { position: relative; width: 420px; transform-origin: 0 0; transform: scale(0.2857); }
 .fp-part { position: relative; height: 300px; overflow: hidden; background: #fff; border-radius: 10px; opacity: 0; box-shadow: 0 10px 30px rgba(14, 10, 60, 0.45); }
@@ -461,6 +461,21 @@ section.find { padding-top: 110px; }
 .fp-parts.stitched { filter: drop-shadow(0 10px 24px rgba(14, 10, 60, 0.5)); }
 .fp-size { position: absolute; left: 50%; top: 356px; transform: translateX(-50%); padding: 3px 9px; border-radius: 7px; background: rgba(12, 13, 16, 0.85); color: #fff; font-size: 11.5px; white-space: nowrap; opacity: 0; transition: opacity 0.3s ease; }
 .demo-full.done .fp-size { opacity: 1; }
+/* What is happening, step by step, across the top: outside the stage, so it stays readable. */
+.fp-steps { position: absolute; z-index: 1; left: 4.7%; right: 4.7%; top: 3.4%; display: flex; justify-content: space-between; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.fp-steps li { display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px 0 5px; border-radius: 999px; background: rgba(12, 13, 16, 0.45); color: rgba(255, 255, 255, 0.6); font-size: 13.5px; font-weight: 600; white-space: nowrap; transition: background 0.3s ease, color 0.3s ease; }
+.fp-steps .n { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 750; background: rgba(255, 255, 255, 0.14); }
+.fp-steps li.on { background: rgba(12, 13, 16, 0.9); color: #fff; box-shadow: inset 0 0 0 1px rgba(180, 184, 255, 0.5); }
+.fp-steps li.on .n { background: var(--accent); }
+@media (max-width: 1100px) and (min-width: 901px), (max-width: 640px) {
+  .fp-steps { justify-content: center; top: 4px; }
+  .fp-steps li { display: none; height: 26px; font-size: 12.5px; }
+  .fp-steps li.on { display: flex; }
+  .fp-steps .n { width: 18px; height: 18px; font-size: 11px; }
+}
+.fp-arrow { position: absolute; left: 468px; top: 220px; width: 70px; height: 24px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.25; transition: opacity 0.3s ease; }
+.demo-full.taking .fp-arrow, .demo-full.done .fp-arrow { opacity: 0.9; }
+.fp-cursor { position: absolute; left: 0; top: 0; width: 24px; height: 24px; fill: #fff; stroke: #12131a; stroke-width: 1.6; stroke-linejoin: round; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); opacity: 0; pointer-events: none; }
 /* The made-up page that scrolls. */
 .fp-page { position: relative; width: 420px; height: 1200px; color: #1d1f2a; font-size: 12px; background: #fff; }
 .fp-nav { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-bottom: 1px solid #eef0f4; font-weight: 750; font-size: 13px; }
